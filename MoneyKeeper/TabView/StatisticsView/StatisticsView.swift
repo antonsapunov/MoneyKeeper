@@ -18,21 +18,25 @@ struct StatisticsView: View {
     @State private var chartType: ChartType = .lines
     
     var body: some View {
-        VStack(alignment: .center) {
-            Picker(selection: $chartType, label: Text("What is your favorite color?")) {
-                ForEach(ChartType.allCases, id: \.self) { type in
-                    Text(type.rawValue).tag(type)
+        NavigationView {
+            VStack(alignment: .center) {
+                Picker(selection: $chartType, label: EmptyView()) {
+                    ForEach(ChartType.allCases, id: \.self) { type in
+                        Text(type.rawValue).tag(type)
+                    }
                 }
-            }
-            .pickerStyle(SegmentedPickerStyle())
-            .padding()
-            .onChange(of: chartType, perform: { value in
-                print(chartType)
-            })
-            getChartView(type: chartType)
-            Text("Total: 1000$")
+                .pickerStyle(SegmentedPickerStyle())
                 .padding()
-            Spacer()
+                .onChange(of: chartType, perform: { value in
+                    print(chartType)
+                })
+                getChartView(type: chartType)
+                Text("Total spendings: 1000$")
+                    .font(.title2)
+                    .padding()
+                Spacer()
+            }
+            .navigationTitle("Statistics")
         }
     }
     

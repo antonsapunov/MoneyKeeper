@@ -7,30 +7,19 @@
 
 import SwiftUI
 
-struct CategoryModel {
-    let categoryType: CategoryType
-    var category: Category
-    
-    init(categoryType: CategoryType) {
-        self.categoryType = categoryType
-        switch categoryType {
-        case .base(let category):
-            self.category = category
-        case .add:
-            category = Category(name: "Add", color: .gray)
-        }
-    }
-}
-
-enum CategoryType {
-    case base(Category)
-    case add
-}
-
 struct Category: Identifiable {
     let id = UUID()
+    let type: CategoryType
     let name: String
     let color: Color
+    let icon: Image
+    
+    init(type: CategoryType, color: Color) {
+        self.type = type
+        self.name = type.identifier
+        self.color = color
+        self.icon = type.image
+    }
 }
 
 

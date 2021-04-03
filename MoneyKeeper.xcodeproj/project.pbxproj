@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		612E882C2618CF8600E51C94 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 612E882B2618CF8600E51C94 /* RealmSwift */; };
+		612E882E2618CF8600E51C94 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 612E882D2618CF8600E51C94 /* Realm */; };
+		612E88362618DDA200E51C94 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 612E88352618DDA200E51C94 /* Introspect */; };
+		612E88392618DF5B00E51C94 /* AddMoneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612E88382618DF5B00E51C94 /* AddMoneyViewModel.swift */; };
+		612E883E2618DFFC00E51C94 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612E883D2618DFFC00E51C94 /* RealmManager.swift */; };
+		612E88432618E0D600E51C94 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612E88422618E0D600E51C94 /* Transaction.swift */; };
+		612E88462618E52200E51C94 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612E88452618E52200E51C94 /* CategoryModel.swift */; };
+		612E88492618E52A00E51C94 /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612E88482618E52A00E51C94 /* CategoryType.swift */; };
 		61799A0D26186A880068B705 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61799A0C26186A880068B705 /* Category.swift */; };
 		61799A1226186AE10068B705 /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61799A1126186AE10068B705 /* CategoryData.swift */; };
 		61799A1626186D2F0068B705 /* CategoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61799A1526186D2F0068B705 /* CategoryItemView.swift */; };
@@ -22,6 +30,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		612E88382618DF5B00E51C94 /* AddMoneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMoneyViewModel.swift; sourceTree = "<group>"; };
+		612E883D2618DFFC00E51C94 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		612E88422618E0D600E51C94 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		612E88452618E52200E51C94 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
+		612E88482618E52A00E51C94 /* CategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryType.swift; sourceTree = "<group>"; };
 		61799A0C26186A880068B705 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		61799A1126186AE10068B705 /* CategoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryData.swift; sourceTree = "<group>"; };
 		61799A1526186D2F0068B705 /* CategoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItemView.swift; sourceTree = "<group>"; };
@@ -42,6 +55,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				612E882E2618CF8600E51C94 /* Realm in Frameworks */,
+				612E88362618DDA200E51C94 /* Introspect in Frameworks */,
+				612E882C2618CF8600E51C94 /* RealmSwift in Frameworks */,
 				61799A61261898D90068B705 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,9 +65,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		612E883C2618DFEA00E51C94 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				612E88412618E0B200E51C94 /* RealmObjects */,
+				612E883D2618DFFC00E51C94 /* RealmManager.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		612E88412618E0B200E51C94 /* RealmObjects */ = {
+			isa = PBXGroup;
+			children = (
+				612E88422618E0D600E51C94 /* Transaction.swift */,
+			);
+			path = RealmObjects;
+			sourceTree = "<group>";
+		};
 		61799A0F26186A8F0068B705 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				612E88452618E52200E51C94 /* CategoryModel.swift */,
+				612E88482618E52A00E51C94 /* CategoryType.swift */,
 				61799A0C26186A880068B705 /* Category.swift */,
 			);
 			path = Model;
@@ -70,6 +105,7 @@
 			children = (
 				617DCB6C2618652300CFD67C /* DashboardView.swift */,
 				61799A1526186D2F0068B705 /* CategoryItemView.swift */,
+				61799A6C2618BFAF0068B705 /* AddMoneyView */,
 			);
 			path = DashboardScreen;
 			sourceTree = "<group>";
@@ -86,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				61799A63261899DA0068B705 /* AddMoneyView.swift */,
+				612E88382618DF5B00E51C94 /* AddMoneyViewModel.swift */,
 			);
 			path = AddMoneyView;
 			sourceTree = "<group>";
@@ -102,6 +139,8 @@
 			isa = PBXGroup;
 			children = (
 				61799A6F2618C0540068B705 /* TabViewScreen.swift */,
+				61799A672618BF6B0068B705 /* DashboardScreen */,
+				61799A6D2618BFBA0068B705 /* StatisticsView */,
 			);
 			path = TabView;
 			sourceTree = "<group>";
@@ -125,13 +164,11 @@
 		617DCB692618652300CFD67C /* MoneyKeeper */ = {
 			isa = PBXGroup;
 			children = (
+				61799A6A2618BF9E0068B705 /* Utils */,
 				61799A0F26186A8F0068B705 /* Model */,
 				61799A1026186AD60068B705 /* Data */,
-				61799A6A2618BF9E0068B705 /* Utils */,
+				612E883C2618DFEA00E51C94 /* Database */,
 				61799A6E2618C0460068B705 /* TabView */,
-				61799A672618BF6B0068B705 /* DashboardScreen */,
-				61799A6C2618BFAF0068B705 /* AddMoneyView */,
-				61799A6D2618BFBA0068B705 /* StatisticsView */,
 				617DCB6A2618652300CFD67C /* MoneyKeeperApp.swift */,
 				617DCB6E2618652400CFD67C /* Assets.xcassets */,
 				617DCB732618652400CFD67C /* Info.plist */,
@@ -166,6 +203,9 @@
 			name = MoneyKeeper;
 			packageProductDependencies = (
 				61799A60261898D90068B705 /* SwiftUICharts */,
+				612E882B2618CF8600E51C94 /* RealmSwift */,
+				612E882D2618CF8600E51C94 /* Realm */,
+				612E88352618DDA200E51C94 /* Introspect */,
 			);
 			productName = MoneyKeeper;
 			productReference = 617DCB672618652300CFD67C /* MoneyKeeper.app */;
@@ -196,6 +236,8 @@
 			mainGroup = 617DCB5E2618652300CFD67C;
 			packageReferences = (
 				61799A5F261898D90068B705 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
+				612E882A2618CF8600E51C94 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				612E88342618DDA200E51C94 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 617DCB682618652300CFD67C /* Products */;
 			projectDirPath = "";
@@ -223,15 +265,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				612E88462618E52200E51C94 /* CategoryModel.swift in Sources */,
 				61799A1626186D2F0068B705 /* CategoryItemView.swift in Sources */,
 				61799A64261899DA0068B705 /* AddMoneyView.swift in Sources */,
+				612E88432618E0D600E51C94 /* Transaction.swift in Sources */,
+				612E883E2618DFFC00E51C94 /* RealmManager.swift in Sources */,
 				617DCB6D2618652300CFD67C /* DashboardView.swift in Sources */,
 				61799A1226186AE10068B705 /* CategoryData.swift in Sources */,
+				612E88392618DF5B00E51C94 /* AddMoneyViewModel.swift in Sources */,
 				61799A4E26188AAC0068B705 /* StatisticsView.swift in Sources */,
 				617DCB6B2618652300CFD67C /* MoneyKeeperApp.swift in Sources */,
 				61799A1A261874F60068B705 /* VerticalLabelStyle.swift in Sources */,
 				61799A702618C0540068B705 /* TabViewScreen.swift in Sources */,
 				61799A0D26186A880068B705 /* Category.swift in Sources */,
+				612E88492618E52A00E51C94 /* CategoryType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +469,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		612E882A2618CF8600E51C94 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.7.2;
+			};
+		};
+		612E88342618DDA200E51C94 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.3;
+			};
+		};
 		61799A5F261898D90068B705 /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mecid/SwiftUICharts";
@@ -433,6 +496,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		612E882B2618CF8600E51C94 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 612E882A2618CF8600E51C94 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+		612E882D2618CF8600E51C94 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 612E882A2618CF8600E51C94 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		612E88352618DDA200E51C94 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 612E88342618DDA200E51C94 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
 		61799A60261898D90068B705 /* SwiftUICharts */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 61799A5F261898D90068B705 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;

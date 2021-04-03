@@ -13,13 +13,11 @@ struct TabViewScreen: View {
         TabView {
             DashboardView()
                 .tabItem {
-                    Image(systemName: "phone.fill")
-                    Text("First Tab")
+                    Image(systemName: "house")
                 }
             StatisticsView()
                 .tabItem {
-                    Image(systemName: "tv.fill")
-                    Text("Second Tab")
+                    Image(systemName: "chart.bar")
                 }
         }
     }

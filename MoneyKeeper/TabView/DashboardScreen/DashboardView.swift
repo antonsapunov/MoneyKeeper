@@ -24,8 +24,7 @@ struct DashboardView: View {
                             }
                     }
                     CategoryItemView(category: addCategory)
-                        
-                    .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                        .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                 }
                 .padding()
                 .sheet(item: $selectedCategory) { category in
@@ -34,22 +33,12 @@ struct DashboardView: View {
                 Spacer()
             }
             .navigationTitle("Categories")
-            .toolbar {
-                Button(action: {
-                    print(1)
-                }) {
-                    Image(systemName: "plus")
-                        .accessibilityLabel("User Profile")
-                }
-            }
         }
     }
 }
 
 struct DashboardView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            DashboardView()
-        }
+        DashboardView()
     }
 }

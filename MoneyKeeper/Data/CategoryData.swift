@@ -9,9 +9,9 @@ import Foundation
 import SwiftUI
 
 var categoryData: [Category] = [
-    CategoryModel(categoryType: .base(Category(name: "Food", color: Color.yellow))).category,
-    CategoryModel(categoryType: .base(Category(name: "Transport", color: Color.blue))).category,
-    CategoryModel(categoryType: .base(Category(name: "Shopping", color: Color.green))).category,
-    CategoryModel(categoryType: .base(Category(name: "Entertainment", color: Color.red))).category,
-    CategoryModel(categoryType: .base(Category(name: "Service", color: Color.gray))).category
+    CategoryModel(categoryType: .food).category,
+    CategoryModel(categoryType: .transport).category,
+    CategoryModel(categoryType: .shopping).category,
+    CategoryModel(categoryType: .entertainment).category,
+    CategoryModel(categoryType: .service).category
 ]
