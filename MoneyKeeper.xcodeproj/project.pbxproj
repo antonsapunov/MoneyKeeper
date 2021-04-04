@@ -10,13 +10,11 @@
 		612E882C2618CF8600E51C94 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 612E882B2618CF8600E51C94 /* RealmSwift */; };
 		612E882E2618CF8600E51C94 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 612E882D2618CF8600E51C94 /* Realm */; };
 		612E88362618DDA200E51C94 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 612E88352618DDA200E51C94 /* Introspect */; };
-		612E88392618DF5B00E51C94 /* AddMoneyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612E88382618DF5B00E51C94 /* AddMoneyViewModel.swift */; };
-		612E883E2618DFFC00E51C94 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612E883D2618DFFC00E51C94 /* RealmManager.swift */; };
+		612E883E2618DFFC00E51C94 /* TransactionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612E883D2618DFFC00E51C94 /* TransactionStore.swift */; };
 		612E88432618E0D600E51C94 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612E88422618E0D600E51C94 /* Transaction.swift */; };
 		612E88462618E52200E51C94 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612E88452618E52200E51C94 /* CategoryModel.swift */; };
 		612E88492618E52A00E51C94 /* CategoryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612E88482618E52A00E51C94 /* CategoryType.swift */; };
 		61799A0D26186A880068B705 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61799A0C26186A880068B705 /* Category.swift */; };
-		61799A1226186AE10068B705 /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61799A1126186AE10068B705 /* CategoryData.swift */; };
 		61799A1626186D2F0068B705 /* CategoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61799A1526186D2F0068B705 /* CategoryItemView.swift */; };
 		61799A1A261874F60068B705 /* VerticalLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61799A19261874F60068B705 /* VerticalLabelStyle.swift */; };
 		61799A4E26188AAC0068B705 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61799A4D26188AAC0068B705 /* StatisticsView.swift */; };
@@ -27,16 +25,16 @@
 		617DCB6D2618652300CFD67C /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617DCB6C2618652300CFD67C /* DashboardView.swift */; };
 		617DCB6F2618652400CFD67C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 617DCB6E2618652400CFD67C /* Assets.xcassets */; };
 		617DCB722618652400CFD67C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 617DCB712618652400CFD67C /* Preview Assets.xcassets */; };
+		61BF64F02619E2DF0000373D /* AddCategoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF64EF2619E2DF0000373D /* AddCategoryItemView.swift */; };
+		61BF64F62619ECA60000373D /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF64F52619ECA60000373D /* DashboardViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		612E88382618DF5B00E51C94 /* AddMoneyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMoneyViewModel.swift; sourceTree = "<group>"; };
-		612E883D2618DFFC00E51C94 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		612E883D2618DFFC00E51C94 /* TransactionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionStore.swift; sourceTree = "<group>"; };
 		612E88422618E0D600E51C94 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		612E88452618E52200E51C94 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		612E88482618E52A00E51C94 /* CategoryType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryType.swift; sourceTree = "<group>"; };
 		61799A0C26186A880068B705 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
-		61799A1126186AE10068B705 /* CategoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryData.swift; sourceTree = "<group>"; };
 		61799A1526186D2F0068B705 /* CategoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItemView.swift; sourceTree = "<group>"; };
 		61799A19261874F60068B705 /* VerticalLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalLabelStyle.swift; sourceTree = "<group>"; };
 		61799A4D26188AAC0068B705 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
@@ -48,6 +46,8 @@
 		617DCB6E2618652400CFD67C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		617DCB712618652400CFD67C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		617DCB732618652400CFD67C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		61BF64EF2619E2DF0000373D /* AddCategoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryItemView.swift; sourceTree = "<group>"; };
+		61BF64F52619ECA60000373D /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				612E88412618E0B200E51C94 /* RealmObjects */,
-				612E883D2618DFFC00E51C94 /* RealmManager.swift */,
+				612E883D2618DFFC00E51C94 /* TransactionStore.swift */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -92,19 +92,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		61799A1026186AD60068B705 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-				61799A1126186AE10068B705 /* CategoryData.swift */,
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
 		61799A672618BF6B0068B705 /* DashboardScreen */ = {
 			isa = PBXGroup;
 			children = (
 				617DCB6C2618652300CFD67C /* DashboardView.swift */,
+				61BF64F52619ECA60000373D /* DashboardViewModel.swift */,
 				61799A1526186D2F0068B705 /* CategoryItemView.swift */,
+				61BF64EF2619E2DF0000373D /* AddCategoryItemView.swift */,
 				61799A6C2618BFAF0068B705 /* AddMoneyView */,
 			);
 			path = DashboardScreen;
@@ -122,7 +116,6 @@
 			isa = PBXGroup;
 			children = (
 				61799A63261899DA0068B705 /* AddMoneyView.swift */,
-				612E88382618DF5B00E51C94 /* AddMoneyViewModel.swift */,
 			);
 			path = AddMoneyView;
 			sourceTree = "<group>";
@@ -166,7 +159,6 @@
 			children = (
 				61799A6A2618BF9E0068B705 /* Utils */,
 				61799A0F26186A8F0068B705 /* Model */,
-				61799A1026186AD60068B705 /* Data */,
 				612E883C2618DFEA00E51C94 /* Database */,
 				61799A6E2618C0460068B705 /* TabView */,
 				617DCB6A2618652300CFD67C /* MoneyKeeperApp.swift */,
@@ -269,16 +261,16 @@
 				61799A1626186D2F0068B705 /* CategoryItemView.swift in Sources */,
 				61799A64261899DA0068B705 /* AddMoneyView.swift in Sources */,
 				612E88432618E0D600E51C94 /* Transaction.swift in Sources */,
-				612E883E2618DFFC00E51C94 /* RealmManager.swift in Sources */,
+				612E883E2618DFFC00E51C94 /* TransactionStore.swift in Sources */,
 				617DCB6D2618652300CFD67C /* DashboardView.swift in Sources */,
-				61799A1226186AE10068B705 /* CategoryData.swift in Sources */,
-				612E88392618DF5B00E51C94 /* AddMoneyViewModel.swift in Sources */,
 				61799A4E26188AAC0068B705 /* StatisticsView.swift in Sources */,
 				617DCB6B2618652300CFD67C /* MoneyKeeperApp.swift in Sources */,
+				61BF64F02619E2DF0000373D /* AddCategoryItemView.swift in Sources */,
 				61799A1A261874F60068B705 /* VerticalLabelStyle.swift in Sources */,
 				61799A702618C0540068B705 /* TabViewScreen.swift in Sources */,
 				61799A0D26186A880068B705 /* Category.swift in Sources */,
 				612E88492618E52A00E51C94 /* CategoryType.swift in Sources */,
+				61BF64F62619ECA60000373D /* DashboardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

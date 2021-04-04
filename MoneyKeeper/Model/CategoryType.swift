@@ -17,7 +17,26 @@ indirect enum CategoryType {
     case add
     case custom(Category)
     
-    var identifier: String {
+    var id: String {
+        switch self {
+        case .food:
+            return "Food"
+        case .transport:
+            return "Transport"
+        case .shopping:
+            return "Shopping"
+        case .entertainment:
+            return "Entertainment"
+        case .service:
+            return "Service"
+        case .add:
+            return "Add"
+        case .custom(let category):
+            return category.id.uuidString
+        }
+    }
+    
+    var name: String {
         switch self {
         case .food:
             return "Food"
@@ -43,7 +62,7 @@ indirect enum CategoryType {
         case .transport:
             return Image(systemName: "car")
         case .shopping:
-            return Image(systemName: "cart")
+            return Image(systemName: "bag")
         case .entertainment:
             return Image(systemName: "tv")
         case .service:

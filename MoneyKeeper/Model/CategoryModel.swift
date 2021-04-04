@@ -15,15 +15,15 @@ struct CategoryModel {
         self.categoryType = categoryType
         switch categoryType {
         case .food:
-            category = Category(type: categoryType, color: Color.yellow)
+            category = Category(type: categoryType, color: .yellow)
         case .transport:
-            category = Category(type: categoryType, color: Color.blue)
+            category = Category(type: categoryType, color: .blue)
         case .shopping:
-            category = Category(type: categoryType, color: Color.green)
+            category = Category(type: categoryType, color: .green)
         case .entertainment:
-            category = Category(type: categoryType, color: Color.red)
+            category = Category(type: categoryType, color: .red)
         case .service:
-            category = Category(type: categoryType, color: Color.gray)
+            category = Category(type: categoryType, color: .gray)
         case .add:
             category = Category(type: categoryType, color: .gray)
         case .custom(let category):

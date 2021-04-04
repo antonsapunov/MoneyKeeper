@@ -9,26 +9,28 @@ import SwiftUI
 
 struct DashboardView: View {
     
+    @EnvironmentObject var viewModel: DashboardViewModel
     @State private var selectedCategory: Category?
+    
     private let columns = Array(repeating: GridItem(.flexible()), count: 4)
-    private let addCategory = CategoryModel(categoryType: .add).category
     
     var body: some View {
         NavigationView {
             VStack {
                 LazyVGrid(columns: columns) {
-                    ForEach(categoryData, id: \.id) { category in
+                    ForEach(viewModel.categories, id: \.id) { category in
                         CategoryItemView(category: category)
                             .onTapGesture {
                                 selectedCategory = category
                             }
                     }
-                    CategoryItemView(category: addCategory)
+                    AddCategoryItemView()
                         .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                 }
                 .padding()
                 .sheet(item: $selectedCategory) { category in
                     AddMoneyView(category: category)
+                        .environmentObject(viewModel)
                 }
                 Spacer()
             }

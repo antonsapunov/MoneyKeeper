@@ -10,18 +10,17 @@ import Introspect
 
 struct AddMoneyView: View {
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var viewModel: DashboardViewModel
     @State private var amount: String = ""
     
     var category: Category
-    
-    private let viewModel = AddMoneyViewModel()
 
     var body: some View {
         VStack(alignment: .center, spacing: 32) {
             Text(category.name)
                 .font(.title)
             Spacer()
-            TextField("Amount", text: $amount)
+            TextField("Spend Amount", text: $amount)
                 .keyboardType(.decimalPad)
                 .frame(height: 48)
                 .font(.title)
@@ -36,7 +35,7 @@ struct AddMoneyView: View {
                     textField.text = string
                 }
             Button(action: {
-                viewModel.saveTransaction(categoryType: category.type, amount: amount)
+                viewModel.createTransaction(category: category, amount: amount)
                 presentationMode.wrappedValue.dismiss()
             }, label: {
                 Text("ADD")

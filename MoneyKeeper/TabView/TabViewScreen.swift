@@ -6,8 +6,19 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct TabViewScreen: View {
+    
+    private var realm: Realm!
+    
+    init() {
+        do {
+          realm = try Realm()
+        } catch let error {
+          fatalError("Failed to open Realm. Error: \(error.localizedDescription)")
+        }
+    }
     
     var body: some View {
         TabView {
@@ -15,10 +26,12 @@ struct TabViewScreen: View {
                 .tabItem {
                     Image(systemName: "house")
                 }
+                .environmentObject(DashboardViewModel())
             StatisticsView()
                 .tabItem {
                     Image(systemName: "chart.bar")
                 }
+//                .environmentObject(TransactionStore(realm: realm))
         }
     }
 }

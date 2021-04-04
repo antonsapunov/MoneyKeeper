@@ -12,10 +12,16 @@ struct CategoryItemView: View {
 
     var body: some View {
         Label {
-            Text(category.name)
-                .font(.caption)
-                .frame(width: 80)
-                .lineLimit(1)
+            VStack {
+                Text(category.name)
+                    .font(.caption)
+                    .frame(width: 80)
+                    .lineLimit(1)
+                Text(getTransformedAmount(amount: category.amount))
+                    .font(.caption)
+                    .frame(width: 80)
+                    .lineLimit(1)
+            }
         } icon: {
             RoundedRectangle(cornerRadius: 20)
                 .fill(category.color)
@@ -23,6 +29,10 @@ struct CategoryItemView: View {
                 .overlay(getTransformedImageView())
         }
         .labelStyle(VerticalLabelStyle())
+    }
+    
+    private func getTransformedAmount(amount: Double) -> String {
+        return "\(Double(round(1000*amount)/1000))$"
     }
     
     private func getTransformedImageView() -> some View {
@@ -34,6 +44,7 @@ struct CategoryItemView: View {
         default:
             return AnyView(category.icon
                             .resizable()
+                            .foregroundColor(.white)
                             .frame(width: 24, height: 24))
         }
     }
@@ -41,8 +52,6 @@ struct CategoryItemView: View {
 
 struct CategoryItemView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryItemView(category: Category(type: .food, color: .blue))
+        CategoryItemView(category: Category(type: .entertainment, color: .blue))
     }
 }
-
-

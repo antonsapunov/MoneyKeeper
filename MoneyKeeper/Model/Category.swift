@@ -13,10 +13,11 @@ struct Category: Identifiable {
     let name: String
     let color: Color
     let icon: Image
+    var amount: Double = 0
     
     init(type: CategoryType, color: Color) {
         self.type = type
-        self.name = type.identifier
+        self.name = type.name
         self.color = color
         self.icon = type.image
     }
