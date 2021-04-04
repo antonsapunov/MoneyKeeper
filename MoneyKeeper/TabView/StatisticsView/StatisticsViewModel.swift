@@ -1,14 +1,13 @@
 //
-//  DashboardViewModel.swift
+//  StatisticsViewModel.swift
 //  MoneyKeeper
 //
 //  Created by Anton Sapunov on 4/4/21.
 //
 
 import Foundation
-import RealmSwift
 
-class DashboardViewModel: ObservableObject {
+class StatisticsViewModel: ObservableObject {
     
     @Published var categories: [Category] = [
         CategoryModel(categoryType: .food).category,
@@ -18,16 +17,12 @@ class DashboardViewModel: ObservableObject {
         CategoryModel(categoryType: .service).category
     ]
     
+    @Published var totalSpendings: Double = 0
+    
     private let transactionStore = TransactionStore.shared
     
     init() {
         transactionStore.addDelegate(delegate: self)
-    }
-    
-    func createTransaction(category: Category, amount: String) {
-        guard let amountDouble = Double(amount) else { return }
-        
-        transactionStore.createTransaction(category: category, amount: amountDouble)
     }
     
     deinit {
@@ -35,8 +30,9 @@ class DashboardViewModel: ObservableObject {
     }
 }
 
-extension DashboardViewModel: CategoryDelegate {
+extension StatisticsViewModel: CategoryDelegate {
     func update(categories: [Category]) {
         self.categories = categories
+        totalSpendings = categories.map { $0.amount }.reduce(0, +)
     }
 }

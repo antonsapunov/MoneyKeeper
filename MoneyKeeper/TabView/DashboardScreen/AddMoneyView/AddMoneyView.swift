@@ -20,7 +20,7 @@ struct AddMoneyView: View {
             Text(category.name)
                 .font(.title)
             Spacer()
-            TextField("Spend Amount", text: $amount)
+            TextField("Spent Amount", text: $amount)
                 .keyboardType(.decimalPad)
                 .frame(height: 48)
                 .font(.title)

@@ -31,7 +31,7 @@ struct TabViewScreen: View {
                 .tabItem {
                     Image(systemName: "chart.bar")
                 }
-//                .environmentObject(TransactionStore(realm: realm))
+                .environmentObject(StatisticsViewModel())
         }
     }
 }

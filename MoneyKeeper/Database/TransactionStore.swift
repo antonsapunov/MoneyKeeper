@@ -9,15 +9,24 @@ import Foundation
 import RealmSwift
 
 protocol CategoryDelegate: AnyObject {
-    func update(transactions: [String: [Transaction]])
+    func update(categories: [Category])
 }
 
-final class TransactionStore: ObservableObject {
+class TransactionStore {
     
-    private weak var categoryDelegate: CategoryDelegate?
+    static let shared = TransactionStore()
     
-    init(categoryDelegate: CategoryDelegate?) {
-        self.categoryDelegate = categoryDelegate
+    var categories: [Category] = [
+        CategoryModel(categoryType: .food).category,
+        CategoryModel(categoryType: .transport).category,
+        CategoryModel(categoryType: .shopping).category,
+        CategoryModel(categoryType: .entertainment).category,
+        CategoryModel(categoryType: .service).category
+    ]
+    
+    private var delegates: [CategoryDelegate?] = []
+    
+    private init() {
         do {
             let realm = try Realm()
             transactionResults = realm.objects(Transaction.self)
@@ -27,22 +36,17 @@ final class TransactionStore: ObservableObject {
         }
     }
     
-//    @Published var categories: [Category] = [
-//        CategoryModel(categoryType: .food).category,
-//        CategoryModel(categoryType: .transport).category,
-//        CategoryModel(categoryType: .shopping).category,
-//        CategoryModel(categoryType: .entertainment).category,
-//        CategoryModel(categoryType: .service).category
-//    ]
-    
-//    @Published var totalSpendings: Double = 0
-
-    var transactions: [Transaction] {
-        Array(transactionResults)
-    }
-    
     private var transactionResults: Results<Transaction>
     private var transactionsNotificationToken: NotificationToken?
+    
+    func addDelegate(delegate: CategoryDelegate) {
+        weak var delegate = delegate
+        delegates.append(delegate)
+    }
+    
+    func removeDelegate(delegate: CategoryDelegate) {
+        delegates.removeAll { $0 === delegate }
+    }
     
     func createTransaction(category: Category, amount: Double) {
         DispatchQueue.global(qos: .background).async {
@@ -77,16 +81,29 @@ final class TransactionStore: ObservableObject {
             switch changes {
             case .initial(let transactions):
                 transactionByCategory = Dictionary(grouping: transactions) { $0.categoryType }
-                self.categoryDelegate?.update(transactions: transactionByCategory)
+                //MARK: create categories
+                self.updateCategories(transactions: transactionByCategory)
             case .update(let transactions, _, _, _):
                 transactionByCategory = Dictionary(grouping: transactions) { $0.categoryType }
-                self.categoryDelegate?.update(transactions: transactionByCategory)
+                self.updateCategories(transactions: transactionByCategory)
             case .error(let error):
                 // An error occurred while opening the Realm file on the background worker thread
                 fatalError("\(error)")
             }
         }
 
+    }
+    
+    private func updateCategories(transactions: [String: [Transaction]]) {
+        for key in transactions.keys {
+            if let index = categories.firstIndex(where: { $0.type.id == key }),
+               let amount = transactions[key]?.compactMap({ $0.amount }).reduce(0, +) {
+                categories[index].amount = amount
+            }
+        }
+        for delegate in delegates {
+            delegate?.update(categories: categories)
+        }
     }
 
     private func removeTransactionObserver() {

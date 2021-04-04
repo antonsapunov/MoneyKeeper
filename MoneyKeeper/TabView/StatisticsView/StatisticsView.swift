@@ -15,7 +15,7 @@ enum ChartType: String, CaseIterable {
 
 struct StatisticsView: View {
     
-    @EnvironmentObject var transactionStore: TransactionStore
+    @EnvironmentObject var viewModel: StatisticsViewModel
     @State private var chartType: ChartType = .lines
     
     var body: some View {
@@ -31,26 +31,26 @@ struct StatisticsView: View {
                 .onChange(of: chartType, perform: { value in
                     print(chartType)
                 })
-//                getChartView(type: chartType)
-//                Text("Total spendings: \(getTransformedAmount(amount: transactionStore.totalSpendings))")
-//                    .font(.title2)
-//                    .padding()
+                getChartView(type: chartType)
+                Text("Total spendings: \(getTransformedAmount(amount: viewModel.totalSpendings))")
+                    .font(.title2)
+                    .padding()
                 Spacer()
             }
             .navigationTitle("Statistics")
         }
     }
     
-//    private func getChartView(type: ChartType) -> some View {
-//        let categories = transactionStore.categories
-//        var points: [DataPoint] = []
-//        for (index,category) in categories.enumerated() {
-//            let legend = Legend(color: category.color, label: LocalizedStringKey(category.name), order: index)
-//            points.append(DataPoint(value: category.amount, label: LocalizedStringKey(getTransformedAmount(amount: category.amount)), legend: legend))
-//        }
-//
-//        return HorizontalBarChartView(dataPoints: points)
-//            .padding()
+    private func getChartView(type: ChartType) -> some View {
+        let categories = viewModel.categories
+        var points: [DataPoint] = []
+        for (index,category) in categories.enumerated() {
+            let legend = Legend(color: category.color, label: LocalizedStringKey(category.name), order: index)
+            points.append(DataPoint(value: category.amount, label: LocalizedStringKey(getTransformedAmount(amount: category.amount)), legend: legend))
+        }
+
+        return HorizontalBarChartView(dataPoints: points)
+            .padding()
 //        switch type {
 //        case .lines:
 //            return AnyView(BarChartView(data: ChartData(values: [("2018 Q4",63150), ("2019 Q1",50900), ("2019 Q2",77550), ("2019 Q3",79600), ("2019 Q4",92550)]), title: "Sales", legend: "Quarterly", form: ChartForm.extraLarge)
@@ -58,7 +58,7 @@ struct StatisticsView: View {
 //        case .graph:
 //            return AnyView(PieChartView(data: [8,23,54,32], title: "Title", legend: "Legendary", form:  ChartForm.large))
 //        }
-//    }
+    }
     
     private func getTransformedAmount(amount: Double) -> String {
         return "\(Double(round(1000*amount)/1000)) $"

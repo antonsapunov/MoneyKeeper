@@ -27,6 +27,7 @@
 		617DCB722618652400CFD67C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 617DCB712618652400CFD67C /* Preview Assets.xcassets */; };
 		61BF64F02619E2DF0000373D /* AddCategoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF64EF2619E2DF0000373D /* AddCategoryItemView.swift */; };
 		61BF64F62619ECA60000373D /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF64F52619ECA60000373D /* DashboardViewModel.swift */; };
+		61BF64FA2619F8570000373D /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF64F92619F8570000373D /* StatisticsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		617DCB732618652400CFD67C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		61BF64EF2619E2DF0000373D /* AddCategoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryItemView.swift; sourceTree = "<group>"; };
 		61BF64F52619ECA60000373D /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		61BF64F92619F8570000373D /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				61799A4D26188AAC0068B705 /* StatisticsView.swift */,
+				61BF64F92619F8570000373D /* StatisticsViewModel.swift */,
 			);
 			path = StatisticsView;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				617DCB6D2618652300CFD67C /* DashboardView.swift in Sources */,
 				61799A4E26188AAC0068B705 /* StatisticsView.swift in Sources */,
 				617DCB6B2618652300CFD67C /* MoneyKeeperApp.swift in Sources */,
+				61BF64FA2619F8570000373D /* StatisticsViewModel.swift in Sources */,
 				61BF64F02619E2DF0000373D /* AddCategoryItemView.swift in Sources */,
 				61799A1A261874F60068B705 /* VerticalLabelStyle.swift in Sources */,
 				61799A702618C0540068B705 /* TabViewScreen.swift in Sources */,
