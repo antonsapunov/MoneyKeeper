@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class Transaction: Object {
+class RealmTransaction: Object {
     
     @objc dynamic var id = UUID().uuidString
     @objc dynamic var categoryType: String = CategoryType.food.id

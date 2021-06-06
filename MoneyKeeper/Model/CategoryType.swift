@@ -7,32 +7,43 @@
 
 import SwiftUI
 
-indirect enum CategoryType {
+enum CategoryType {
     
     case food
     case transport
     case shopping
     case entertainment
     case service
-    case add
-    case custom(Category)
+    
+    init(stringValue: String) {
+        switch stringValue {
+        case "food":
+            self = .food
+        case "transport":
+            self = .transport
+        case "shopping":
+            self = .shopping
+        case "entertainment":
+            self = .entertainment
+        case "service":
+            self = .service
+        default:
+            fatalError("\(stringValue) category not found")
+        }
+    }
     
     var id: String {
         switch self {
         case .food:
-            return "Food"
+            return "food"
         case .transport:
-            return "Transport"
+            return "transport"
         case .shopping:
-            return "Shopping"
+            return "shopping"
         case .entertainment:
-            return "Entertainment"
+            return "entertainment"
         case .service:
-            return "Service"
-        case .add:
-            return "Add"
-        case .custom(let category):
-            return category.id.uuidString
+            return "service"
         }
     }
     
@@ -48,29 +59,21 @@ indirect enum CategoryType {
             return "Entertainment"
         case .service:
             return "Service"
-        case .add:
-            return "Add"
-        case .custom(let category):
-            return category.name
         }
     }
     
-    var image: Image {
+    var image: UIImage {
         switch self {
         case .food:
-            return Image("food")
+            return UIImage(named: "food")!
         case .transport:
-            return Image(systemName: "car")
+            return UIImage(systemName: "car")!
         case .shopping:
-            return Image(systemName: "bag")
+            return UIImage(systemName: "bag")!
         case .entertainment:
-            return Image(systemName: "tv")
+            return UIImage(systemName: "tv")!
         case .service:
-            return Image(systemName: "heart.circle")
-        case .add:
-            return Image(systemName: "plus")
-        case .custom(let category):
-            return category.icon
+            return UIImage(systemName: "heart.circle")!
         }
     }
 }

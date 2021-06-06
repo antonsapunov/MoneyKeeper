@@ -24,7 +24,7 @@ struct CategoryItemView: View {
             }
         } icon: {
             RoundedRectangle(cornerRadius: 20)
-                .fill(category.color)
+                .fill(Color(category.color))
                 .frame(width: 48, height: 48)
                 .overlay(getTransformedImageView())
         }
@@ -38,11 +38,11 @@ struct CategoryItemView: View {
     private func getTransformedImageView() -> some View {
         switch category.type {
         case .food:
-            return AnyView(category.icon
+            return AnyView(Image(uiImage: category.icon)
                             .resizable()
                             .frame(width: 40, height: 40))
         default:
-            return AnyView(category.icon
+            return AnyView(Image(uiImage: category.icon)
                             .resizable()
                             .foregroundColor(.white)
                             .frame(width: 24, height: 24))

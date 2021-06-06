@@ -24,8 +24,6 @@ struct DashboardView: View {
                                 selectedCategory = category
                             }
                     }
-                    AddCategoryItemView()
-                        .listRowInsets(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                 }
                 .padding()
                 .sheet(item: $selectedCategory) { category in

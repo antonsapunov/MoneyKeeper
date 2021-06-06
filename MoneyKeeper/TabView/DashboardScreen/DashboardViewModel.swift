@@ -10,28 +10,22 @@ import RealmSwift
 
 class DashboardViewModel: ObservableObject {
     
-    @Published var categories: [Category] = [
-        CategoryModel(categoryType: .food).category,
-        CategoryModel(categoryType: .transport).category,
-        CategoryModel(categoryType: .shopping).category,
-        CategoryModel(categoryType: .entertainment).category,
-        CategoryModel(categoryType: .service).category
-    ]
+    @Published var categories: [Category] = []
     
-    private let transactionStore = TransactionStore.shared
+    private let realmStore = RealmStore.shared
     
     init() {
-        transactionStore.addDelegate(delegate: self)
+        realmStore.addDelegate(delegate: self)
     }
     
     func createTransaction(category: Category, amount: String) {
         guard let amountDouble = Double(amount) else { return }
         
-        transactionStore.createTransaction(category: category, amount: amountDouble)
+        realmStore.createTransaction(category: category, amount: amountDouble)
     }
     
     deinit {
-        transactionStore.removeDelegate(delegate: self)
+        realmStore.removeDelegate(delegate: self)
     }
 }
 

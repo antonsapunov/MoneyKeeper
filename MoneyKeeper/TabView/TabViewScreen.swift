@@ -14,9 +14,9 @@ struct TabViewScreen: View {
     
     init() {
         do {
-          realm = try Realm()
+            realm = try Realm()
         } catch let error {
-          fatalError("Failed to open Realm. Error: \(error.localizedDescription)")
+            fatalError("Failed to open Realm. Error: \(error.localizedDescription)")
         }
     }
     

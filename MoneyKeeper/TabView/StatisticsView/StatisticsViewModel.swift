@@ -9,24 +9,18 @@ import Foundation
 
 class StatisticsViewModel: ObservableObject {
     
-    @Published var categories: [Category] = [
-        CategoryModel(categoryType: .food).category,
-        CategoryModel(categoryType: .transport).category,
-        CategoryModel(categoryType: .shopping).category,
-        CategoryModel(categoryType: .entertainment).category,
-        CategoryModel(categoryType: .service).category
-    ]
+    @Published var categories: [Category] = []
     
     @Published var totalSpendings: Double = 0
     
-    private let transactionStore = TransactionStore.shared
+    private let realmStore = RealmStore.shared
     
     init() {
-        transactionStore.addDelegate(delegate: self)
+        realmStore.addDelegate(delegate: self)
     }
     
     deinit {
-        transactionStore.removeDelegate(delegate: self)
+        realmStore.removeDelegate(delegate: self)
     }
 }
 
