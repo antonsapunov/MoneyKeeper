@@ -29,6 +29,10 @@ class RealmStore {
     
     private var delegates: [CategoryDelegate?] = []
     
+    private var categoryResults: Results<RealmCategory>
+    private var transactionResults: Results<RealmTransaction>
+    private var transactionsNotificationToken: NotificationToken?
+    
     private init() {
         do {
             let realm = try Realm()
@@ -43,10 +47,6 @@ class RealmStore {
         }
     }
     
-    private var categoryResults: Results<RealmCategory>
-    private var transactionResults: Results<RealmTransaction>
-    private var transactionsNotificationToken: NotificationToken?
-    
     func addDelegate(delegate: CategoryDelegate) {
         weak var delegate = delegate
         delegates.append(delegate)
@@ -56,14 +56,14 @@ class RealmStore {
         delegates.removeAll { $0 === delegate }
     }
     
-    private func getActualCategories() -> [Category] {
-        return Array(categoryResults).map {
+    private func getActualCategories(for results: Results<RealmCategory>? = nil) -> [Category] {
+        return Array(results ?? categoryResults).map {
             return Category(type: CategoryType(stringValue: $0.type), color: UIColor.color(data: $0.color)!, amount: $0.amount)
         }
     }
     
     func createInitialCategories() {
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .utility).async {
             autoreleasepool {
                 do {
                     let realm = try Realm()
@@ -80,6 +80,9 @@ class RealmStore {
                     try realm.write {
                         realm.add(categoriesToWrite, update: .modified)
                     }
+                    let results = realm.objects(RealmCategory.self)
+                    let categories = self.getActualCategories(for: results)
+                    self.updateUI(with: categories)
                 } catch let error {
                     print(error)
                 }
@@ -140,7 +143,6 @@ class RealmStore {
                 fatalError("\(error)")
             }
         }
-
     }
     
     private func updateCategories(transactions: [String: [RealmTransaction]]) {
@@ -151,6 +153,10 @@ class RealmStore {
                 categories[index].amount = amount
             }
         }
+        updateUI(with: categories)
+    }
+    
+    private func updateUI(with categories: [Category]) {
         for delegate in delegates {
             delegate?.update(categories: categories)
         }
