@@ -96,7 +96,7 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		61799A672618BF6B0068B705 /* DashboardScreen */ = {
+		61799A672618BF6B0068B705 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
 				617DCB6C2618652300CFD67C /* DashboardView.swift */,
@@ -105,7 +105,7 @@
 				61BF64EF2619E2DF0000373D /* AddCategoryItemView.swift */,
 				61799A6C2618BFAF0068B705 /* AddMoneyView */,
 			);
-			path = DashboardScreen;
+			path = Dashboard;
 			sourceTree = "<group>";
 		};
 		61799A6A2618BF9E0068B705 /* Utils */ = {
@@ -125,21 +125,22 @@
 			path = AddMoneyView;
 			sourceTree = "<group>";
 		};
-		61799A6D2618BFBA0068B705 /* StatisticsView */ = {
+		61799A6D2618BFBA0068B705 /* Statistics */ = {
 			isa = PBXGroup;
 			children = (
 				61799A4D26188AAC0068B705 /* StatisticsView.swift */,
 				61BF64F92619F8570000373D /* StatisticsViewModel.swift */,
 			);
-			path = StatisticsView;
+			path = Statistics;
 			sourceTree = "<group>";
 		};
 		61799A6E2618C0460068B705 /* TabView */ = {
 			isa = PBXGroup;
 			children = (
 				61799A6F2618C0540068B705 /* TabViewScreen.swift */,
-				61799A672618BF6B0068B705 /* DashboardScreen */,
-				61799A6D2618BFBA0068B705 /* StatisticsView */,
+				61799A672618BF6B0068B705 /* Dashboard */,
+				61A65644266EC2C600CB328B /* Transactions */,
+				61799A6D2618BFBA0068B705 /* Statistics */,
 			);
 			path = TabView;
 			sourceTree = "<group>";
@@ -181,6 +182,13 @@
 				617DCB712618652400CFD67C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		61A65644266EC2C600CB328B /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Transactions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
