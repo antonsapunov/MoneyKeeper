@@ -52,6 +52,6 @@ struct CategoryItemView: View {
 
 struct CategoryItemView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryItemView(category: Category(type: .entertainment, color: .blue))
+        CategoryItemView(category: Category(type: .entertainment, color: .blue, order: 1))
     }
 }

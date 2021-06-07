@@ -53,6 +53,6 @@ struct AddMoneyView: View {
 
 struct AddMoneyView_Previews: PreviewProvider {
     static var previews: some View {
-        AddMoneyView(category: Category(type: .food, color: .red))
+        AddMoneyView(category: Category(type: .food, color: .red, order: 1))
     }
 }

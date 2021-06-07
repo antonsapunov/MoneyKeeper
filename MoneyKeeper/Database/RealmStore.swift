@@ -20,11 +20,11 @@ class RealmStore {
     private var categories: [Category] = []
     
     private var categoriesInitial: [Category] = [
-        Category(type: .food, color: .yellow),
-        Category(type: .transport, color: .blue),
-        Category(type: .shopping, color: .green),
-        Category(type: .entertainment, color: .red),
-        Category(type: .service, color: .gray),
+        Category(type: .food, color: .yellow, order: 1),
+        Category(type: .transport, color: .blue, order: 2),
+        Category(type: .shopping, color: .green, order: 3),
+        Category(type: .entertainment, color: .red, order: 4),
+        Category(type: .service, color: .gray, order: 5),
     ]
     
     private var delegates: [CategoryDelegate?] = []
@@ -36,7 +36,7 @@ class RealmStore {
     private init() {
         do {
             let realm = try Realm()
-            categoryResults = realm.objects(RealmCategory.self)
+            categoryResults = realm.objects(RealmCategory.self).sorted(byKeyPath: "order", ascending: true)
             transactionResults = realm.objects(RealmTransaction.self)
             addTransactionObserver()
             if categoryResults.isEmpty {
@@ -58,7 +58,7 @@ class RealmStore {
     
     private func getActualCategories(for results: Results<RealmCategory>? = nil) -> [Category] {
         return Array(results ?? categoryResults).map {
-            return Category(type: CategoryType(stringValue: $0.type), color: UIColor.color(data: $0.color)!, amount: $0.amount)
+            return Category(type: CategoryType(stringValue: $0.type), color: UIColor.color(data: $0.color)!, order: $0.order, amount: $0.amount)
         }
     }
     
@@ -67,20 +67,21 @@ class RealmStore {
             autoreleasepool {
                 do {
                     let realm = try Realm()
-                    var categoriesToWrite: [RealmCategory] = []
+                    var categoriesToWrite = [RealmCategory]()
                     for categoryModel in self.categoriesInitial {
                         let category = RealmCategory()
                         category.type = categoryModel.type.id
                         category.name = categoryModel.name
                         category.color = categoryModel.color.encode()!
                         category.icon = categoryModel.icon.pngData()!
+                        category.order = categoryModel.order
                         category.amount = categoryModel.amount
                         categoriesToWrite.append(category)
                     }
                     try realm.write {
                         realm.add(categoriesToWrite, update: .modified)
                     }
-                    let results = realm.objects(RealmCategory.self)
+                    let results = realm.objects(RealmCategory.self).sorted(byKeyPath: "order", ascending: true)
                     let categories = self.getActualCategories(for: results)
                     self.updateUI(with: categories)
                 } catch let error {
