@@ -27,6 +27,10 @@ struct TabViewScreen: View {
                     Image(systemName: "house")
                 }
                 .environmentObject(DashboardViewModel())
+            TransactionsView()
+                .tabItem {
+                    Image(systemName: "arrow.left.arrow.right.circle")
+                }
             StatisticsView()
                 .tabItem {
                     Image(systemName: "chart.bar")

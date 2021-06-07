@@ -26,6 +26,7 @@
 		617DCB6F2618652400CFD67C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 617DCB6E2618652400CFD67C /* Assets.xcassets */; };
 		617DCB722618652400CFD67C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 617DCB712618652400CFD67C /* Preview Assets.xcassets */; };
 		619F9063261A3C360097C07E /* RealmCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619F9062261A3C360097C07E /* RealmCategory.swift */; };
+		61A65646266EC2FF00CB328B /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A65645266EC2FF00CB328B /* TransactionsView.swift */; };
 		61BF64F02619E2DF0000373D /* AddCategoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF64EF2619E2DF0000373D /* AddCategoryItemView.swift */; };
 		61BF64F62619ECA60000373D /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF64F52619ECA60000373D /* DashboardViewModel.swift */; };
 		61BF64FA2619F8570000373D /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF64F92619F8570000373D /* StatisticsViewModel.swift */; };
@@ -49,6 +50,7 @@
 		617DCB712618652400CFD67C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		617DCB732618652400CFD67C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		619F9062261A3C360097C07E /* RealmCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCategory.swift; sourceTree = "<group>"; };
+		61A65645266EC2FF00CB328B /* TransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsView.swift; sourceTree = "<group>"; };
 		61BF64EF2619E2DF0000373D /* AddCategoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryItemView.swift; sourceTree = "<group>"; };
 		61BF64F52619ECA60000373D /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		61BF64F92619F8570000373D /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 		61A65644266EC2C600CB328B /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
+				61A65645266EC2FF00CB328B /* TransactionsView.swift */,
 			);
 			path = Transactions;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				617DCB6B2618652300CFD67C /* MoneyKeeperApp.swift in Sources */,
 				61BF64FA2619F8570000373D /* StatisticsViewModel.swift in Sources */,
 				61BF64F02619E2DF0000373D /* AddCategoryItemView.swift in Sources */,
+				61A65646266EC2FF00CB328B /* TransactionsView.swift in Sources */,
 				61799A1A261874F60068B705 /* VerticalLabelStyle.swift in Sources */,
 				61799A702618C0540068B705 /* TabViewScreen.swift in Sources */,
 				61799A0D26186A880068B705 /* Category.swift in Sources */,
