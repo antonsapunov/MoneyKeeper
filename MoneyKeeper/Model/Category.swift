@@ -16,11 +16,20 @@ struct Category: Identifiable {
     let order: Int
     var amount: Double
     
+    init(type: CategoryType, amount: Double = 0) {
+        self.type = type
+        self.name = type.defaultName
+        self.color = type.defaultColor
+        self.icon = type.defaultImage
+        self.order = type.defaultOrder
+        self.amount = amount
+    }
+    
     init(type: CategoryType, color: UIColor, order: Int, amount: Double = 0) {
         self.type = type
-        self.name = type.name
+        self.name = type.defaultName
         self.color = color
-        self.icon = type.image
+        self.icon = type.defaultImage
         self.order = order
         self.amount = amount
     }

@@ -47,7 +47,7 @@ enum CategoryType {
         }
     }
     
-    var name: String {
+    var defaultName: String {
         switch self {
         case .food:
             return "Food"
@@ -62,7 +62,22 @@ enum CategoryType {
         }
     }
     
-    var image: UIImage {
+    var defaultColor: UIColor {
+        switch self {
+        case .food:
+            return .yellow
+        case .transport:
+            return .blue
+        case .shopping:
+            return .green
+        case .entertainment:
+            return .red
+        case .service:
+            return .gray
+        }
+    }
+    
+    var defaultImage: UIImage {
         switch self {
         case .food:
             return UIImage(named: "food")!
@@ -74,6 +89,21 @@ enum CategoryType {
             return UIImage(systemName: "tv")!
         case .service:
             return UIImage(systemName: "heart.circle")!
+        }
+    }
+    
+    var defaultOrder: Int {
+        switch self {
+        case .food:
+            return 1
+        case .transport:
+            return 2
+        case .shopping:
+            return 3
+        case .entertainment:
+            return 4
+        case .service:
+            return 5
         }
     }
 }

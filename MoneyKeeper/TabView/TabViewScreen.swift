@@ -31,6 +31,7 @@ struct TabViewScreen: View {
                 .tabItem {
                     Image(systemName: "arrow.left.arrow.right.circle")
                 }
+                .environmentObject(TransactionViewModel())
             StatisticsView()
                 .tabItem {
                     Image(systemName: "chart.bar")

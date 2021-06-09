@@ -9,15 +9,17 @@ import SwiftUI
 
 struct TransactionsView: View {
     
-    @EnvironmentObject var viewModel: DashboardViewModel
+    @EnvironmentObject var viewModel: TransactionViewModel
     
     var body: some View {
         NavigationView {
-            ForEach(viewModel.categories, id: \.id) { category in
-                VStack {
-                    Text(category.name)
+            VStack {
+                ForEach(viewModel.transactions, id: \.id) { transaction in
+                    TransactionItemView(transaction: transaction)
                 }
+                Spacer()
             }
+            .padding(.top, 16)
             .navigationTitle("Transactions")
         }
     }

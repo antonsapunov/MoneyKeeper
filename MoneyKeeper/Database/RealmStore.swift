@@ -18,13 +18,14 @@ class RealmStore {
     static let shared = RealmStore()
 
     private var categories: [Category] = []
+    private var transactions: [Transaction] = []
     
     private var categoriesInitial: [Category] = [
-        Category(type: .food, color: .yellow, order: 1),
-        Category(type: .transport, color: .blue, order: 2),
-        Category(type: .shopping, color: .green, order: 3),
-        Category(type: .entertainment, color: .red, order: 4),
-        Category(type: .service, color: .gray, order: 5),
+        Category(type: .food),
+        Category(type: .transport),
+        Category(type: .shopping),
+        Category(type: .entertainment),
+        Category(type: .service),
     ]
     
     private var delegates: [CategoryDelegate?] = []
@@ -58,7 +59,7 @@ class RealmStore {
     
     private func getActualCategories(for results: Results<RealmCategory>? = nil) -> [Category] {
         return Array(results ?? categoryResults).map {
-            return Category(type: CategoryType(stringValue: $0.type), color: UIColor.color(data: $0.color)!, order: $0.order, amount: $0.amount)
+            return Category(type: CategoryType(stringValue: $0.type), amount: $0.amount)
         }
     }
     
@@ -98,6 +99,7 @@ class RealmStore {
                 transaction.categoryType = category.type.id
                 transaction.amount = amount
                 transaction.currency = "$"
+                transaction.date = Date()
                 do {
                     let realm = try Realm()
                     try realm.write {
@@ -122,6 +124,12 @@ class RealmStore {
                     print(error)
                 }
             }
+        }
+    }
+    
+    func getTransactions() -> [Transaction] {
+        return Array(transactionResults).sorted(by: { $0.date > $1.date }).map {
+            return Transaction(categoryType: CategoryType(stringValue: $0.categoryType), amount: $0.amount, currency: $0.currency, time: $0.date)
         }
     }
     
