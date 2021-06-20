@@ -32,7 +32,7 @@ struct StatisticsView: View {
                     print(chartType)
                 })
                 getChartView(type: chartType)
-                Text("Total spendings: \(getTransformedAmount(amount: viewModel.totalSpendings))")
+                Text("Total spendings: " + viewModel.totalSpendings.formattedWithSeparator(2) + " $")
                     .font(.title2)
                     .padding()
                 Spacer()
@@ -46,7 +46,7 @@ struct StatisticsView: View {
         var points: [DataPoint] = []
         for (index,category) in categories.enumerated() {
             let legend = Legend(color: Color.black, label: LocalizedStringKey(category.name), order: index)
-            points.append(DataPoint(value: category.amount, label: LocalizedStringKey(getTransformedAmount(amount: category.amount)), legend: legend))
+            points.append(DataPoint(value: category.amount, label: LocalizedStringKey(category.amount.formattedWithSeparator(2) + " $"), legend: legend))
         }
 
         return HorizontalBarChartView(dataPoints: points)
@@ -58,10 +58,6 @@ struct StatisticsView: View {
 //        case .graph:
 //            return AnyView(PieChartView(data: [8,23,54,32], title: "Title", legend: "Legendary", form:  ChartForm.large))
 //        }
-    }
-    
-    private func getTransformedAmount(amount: Double) -> String {
-        return "\(Double(round(1000*amount)/1000)) $"
     }
 }
 

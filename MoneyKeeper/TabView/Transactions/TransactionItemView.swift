@@ -22,7 +22,7 @@ struct TransactionItemView: View {
                 .padding(.leading, 8)
                 .multilineTextAlignment(.leading)
             Spacer()
-            Text(getTransformedAmount(amount: transaction.amount))
+            Text(transaction.amount.formattedWithSeparator(2) + "$")
                 .padding(.trailing, 16)
                 .multilineTextAlignment(.trailing)
         }
@@ -41,9 +41,6 @@ struct TransactionItemView: View {
         }
     }
     
-    private func getTransformedAmount(amount: Double) -> String {
-        return "\(Double(round(1000*amount)/1000))$"
-    }
 }
 
 struct TransactionItemView_Previews: PreviewProvider {

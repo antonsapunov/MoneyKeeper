@@ -35,6 +35,7 @@
 		61BF64F02619E2DF0000373D /* AddCategoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF64EF2619E2DF0000373D /* AddCategoryItemView.swift */; };
 		61BF64F62619ECA60000373D /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF64F52619ECA60000373D /* DashboardViewModel.swift */; };
 		61BF64FA2619F8570000373D /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF64F92619F8570000373D /* StatisticsViewModel.swift */; };
+		61C865E1267F7139001889D0 /* +Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C865E0267F7139001889D0 /* +Formatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		61BF64EF2619E2DF0000373D /* AddCategoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryItemView.swift; sourceTree = "<group>"; };
 		61BF64F52619ECA60000373D /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		61BF64F92619F8570000373D /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
+		61C865E0267F7139001889D0 /* +Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Formatter.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,10 +126,8 @@
 		61799A6A2618BF9E0068B705 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				61799A19261874F60068B705 /* VerticalLabelStyle.swift */,
-				6125864926232E3B00F6D768 /* +UIColor.swift */,
 				61B919A526716B730009F963 /* Constants.swift */,
-				61B919A726716DA90009F963 /* +Double.swift */,
+				61799A19261874F60068B705 /* VerticalLabelStyle.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -180,8 +180,9 @@
 			isa = PBXGroup;
 			children = (
 				61799A6A2618BF9E0068B705 /* Utils */,
-				61799A0F26186A8F0068B705 /* Model */,
+				61C865E2267F7162001889D0 /* Extensions */,
 				612E883C2618DFEA00E51C94 /* Database */,
+				61799A0F26186A8F0068B705 /* Model */,
 				61799A6E2618C0460068B705 /* TabView */,
 				617DCB6A2618652300CFD67C /* MoneyKeeperApp.swift */,
 				617DCB6E2618652400CFD67C /* Assets.xcassets */,
@@ -207,6 +208,16 @@
 				61B9199F267160110009F963 /* TransactionViewModel.swift */,
 			);
 			path = Transactions;
+			sourceTree = "<group>";
+		};
+		61C865E2267F7162001889D0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6125864926232E3B00F6D768 /* +UIColor.swift */,
+				61B919A726716DA90009F963 /* +Double.swift */,
+				61C865E0267F7139001889D0 /* +Formatter.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +303,7 @@
 				61799A1626186D2F0068B705 /* CategoryItemView.swift in Sources */,
 				6125864A26232E3B00F6D768 /* +UIColor.swift in Sources */,
 				61799A64261899DA0068B705 /* AddMoneyView.swift in Sources */,
+				61C865E1267F7139001889D0 /* +Formatter.swift in Sources */,
 				612E88432618E0D600E51C94 /* RealmTransaction.swift in Sources */,
 				612E883E2618DFFC00E51C94 /* RealmStore.swift in Sources */,
 				617DCB6D2618652300CFD67C /* DashboardView.swift in Sources */,

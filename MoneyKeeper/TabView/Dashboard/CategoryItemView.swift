@@ -17,7 +17,7 @@ struct CategoryItemView: View {
                     .font(.caption)
                     .frame(width: 80)
                     .lineLimit(1)
-                Text(getTransformedAmount(amount: category.amount))
+                Text(category.amount.formattedWithSeparator(2) + "$")
                     .font(.caption)
                     .frame(width: 80)
                     .lineLimit(1)
@@ -29,10 +29,6 @@ struct CategoryItemView: View {
                 .overlay(getTransformedImageView())
         }
         .labelStyle(VerticalLabelStyle())
-    }
-    
-    private func getTransformedAmount(amount: Double) -> String {
-        return "\(Double(round(1000*amount)/1000))$"
     }
     
     private func getTransformedImageView() -> some View {
