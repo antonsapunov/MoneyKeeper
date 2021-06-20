@@ -7,10 +7,17 @@
 
 import Foundation
 
-struct Transaction {
+struct Transaction: Identifiable {
     let id = UUID()
     let categoryType: CategoryType
+    let direction: TransactionDirection
+    let comment: String
     let amount: Double
     let currency: String
     let time: Date
+}
+
+enum TransactionDirection: String {
+    case incoming
+    case outgoing
 }

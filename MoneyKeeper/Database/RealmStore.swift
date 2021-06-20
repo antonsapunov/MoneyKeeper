@@ -5,12 +5,17 @@
 //  Created by Anton Sapunov on 4/3/21.
 //
 
-import Foundation
 import RealmSwift
 import UIKit
 
-protocol CategoryDelegate: AnyObject {
+protocol UpdateDelegate: AnyObject {}
+
+protocol CategoryDelegate: UpdateDelegate {
     func update(categories: [Category])
+}
+
+protocol TransactionDelegate: UpdateDelegate {
+    func update(transactions: [Transaction])
 }
 
 class RealmStore {
@@ -28,7 +33,8 @@ class RealmStore {
         Category(type: .service),
     ]
     
-    private var delegates: [CategoryDelegate?] = []
+    private var categoryDelegates: [CategoryDelegate?] = []
+    private var transactionDelegates: [TransactionDelegate?] = []
     
     private var categoryResults: Results<RealmCategory>
     private var transactionResults: Results<RealmTransaction>
@@ -48,18 +54,26 @@ class RealmStore {
         }
     }
     
-    func addDelegate(delegate: CategoryDelegate) {
+    func addCategoryDelegate(delegate: CategoryDelegate) {
         weak var delegate = delegate
-        delegates.append(delegate)
+        categoryDelegates.append(delegate)
     }
     
-    func removeDelegate(delegate: CategoryDelegate) {
-        delegates.removeAll { $0 === delegate }
+    func addTransactionDelegate(delegate: TransactionDelegate) {
+        weak var delegate = delegate
+        transactionDelegates.append(delegate)
+    }
+    
+    func removeDelegate(delegate: UpdateDelegate) {
+        categoryDelegates.removeAll { $0 === delegate }
+        transactionDelegates.removeAll { $0 === delegate }
     }
     
     private func getActualCategories(for results: Results<RealmCategory>? = nil) -> [Category] {
-        return Array(results ?? categoryResults).map {
-            return Category(type: CategoryType(stringValue: $0.type), amount: $0.amount)
+        return Array(results ?? categoryResults)
+            .compactMap {
+                guard let categoryType = CategoryType(rawValue: $0.type) else { return nil }
+            return Category(type: categoryType, amount: $0.amount)
         }
     }
     
@@ -71,9 +85,8 @@ class RealmStore {
                     var categoriesToWrite = [RealmCategory]()
                     for categoryModel in self.categoriesInitial {
                         let category = RealmCategory()
-                        category.type = categoryModel.type.id
+                        category.type = categoryModel.type.rawValue
                         category.name = categoryModel.name
-                        category.color = categoryModel.color.encode()!
                         category.icon = categoryModel.icon.pngData()!
                         category.order = categoryModel.order
                         category.amount = categoryModel.amount
@@ -92,11 +105,13 @@ class RealmStore {
         }
     }
     
-    func createTransaction(category: Category, amount: Double) {
+    func createTransaction(category: Category, comment: String? = nil, direction: TransactionDirection, amount: Double) {
         DispatchQueue.global(qos: .background).async {
             autoreleasepool {
                 let transaction = RealmTransaction()
-                transaction.categoryType = category.type.id
+                transaction.categoryType = category.type.rawValue
+                transaction.direction = direction.rawValue
+                transaction.comment = comment ?? ""
                 transaction.amount = amount
                 transaction.currency = "$"
                 transaction.date = Date()
@@ -128,8 +143,19 @@ class RealmStore {
     }
     
     func getTransactions() -> [Transaction] {
-        return Array(transactionResults).sorted(by: { $0.date > $1.date }).map {
-            return Transaction(categoryType: CategoryType(stringValue: $0.categoryType), amount: $0.amount, currency: $0.currency, time: $0.date)
+        return Array(transactionResults)
+            .sorted(by: { $0.date > $1.date })
+            .compactMap {
+                guard let categoryType = CategoryType(rawValue: $0.categoryType),
+                      let transactionDirection = TransactionDirection(rawValue: $0.direction) else { return nil }
+            return Transaction(
+                categoryType: categoryType,
+                direction: transactionDirection,
+                comment: $0.comment,
+                amount: $0.amount,
+                currency: $0.currency,
+                time: $0.date
+            )
         }
     }
     
@@ -142,11 +168,12 @@ class RealmStore {
                 transactionByCategory = Dictionary(grouping: transactions) { $0.categoryType
                 }
                 //MARK: create categories
-                self.updateCategories(transactions: transactionByCategory)
+                self.updateCategories(with: transactionByCategory)
             case .update(let transactions, _, _, _):
                 transactionByCategory = Dictionary(grouping: transactions) { $0.categoryType
                 }
-                self.updateCategories(transactions: transactionByCategory)
+                self.updateCategories(with: transactionByCategory)
+                self.updateTransactions()
             case .error(let error):
                 // An error occurred while opening the Realm file on the background worker thread
                 fatalError("\(error)")
@@ -154,20 +181,30 @@ class RealmStore {
         }
     }
     
-    private func updateCategories(transactions: [String: [RealmTransaction]]) {
+    private func updateCategories(with transactionByCategory: [String: [RealmTransaction]]) {
         categories = getActualCategories()
-        for key in transactions.keys {
-            if let index = categories.firstIndex(where: { $0.type.id == key }),
-               let amount = transactions[key]?.compactMap({ $0.amount }).reduce(0, +) {
+        for key in transactionByCategory.keys {
+            if let index = categories.firstIndex(where: { $0.type.rawValue == key }),
+               let amount = transactionByCategory[key]?.compactMap({ $0.amount }).reduce(0, +) {
                 categories[index].amount = amount
             }
         }
         updateUI(with: categories)
     }
     
+    private func updateTransactions() {
+        updateUI(with: getTransactions())
+    }
+    
     private func updateUI(with categories: [Category]) {
-        for delegate in delegates {
+        for delegate in categoryDelegates {
             delegate?.update(categories: categories)
+        }
+    }
+    
+    private func updateUI(with transactions: [Transaction]) {
+        for delegate in transactionDelegates {
+            delegate?.update(transactions: transactions)
         }
     }
 

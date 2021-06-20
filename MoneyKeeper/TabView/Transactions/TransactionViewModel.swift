@@ -16,10 +16,23 @@ class TransactionViewModel: ObservableObject {
     
     init() {
         loadTransactions()
+        realmStore.addTransactionDelegate(delegate: self)
     }
     
     private func loadTransactions() {
         transactions = realmStore.getTransactions()
     }
+    
+    deinit {
+        realmStore.removeDelegate(delegate: self)
+    }
 
+}
+
+extension TransactionViewModel: TransactionDelegate {
+    func update(transactions: [Transaction]) {
+        DispatchQueue.main.async {
+            self.transactions = transactions
+        }
+    }
 }

@@ -24,7 +24,7 @@ struct CategoryItemView: View {
             }
         } icon: {
             RoundedRectangle(cornerRadius: 20)
-                .fill(Color(category.color))
+                .fill(Color.clear)
                 .frame(width: 48, height: 48)
                 .overlay(getTransformedImageView())
         }
@@ -52,6 +52,6 @@ struct CategoryItemView: View {
 
 struct CategoryItemView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryItemView(category: Category(type: .entertainment, color: .blue, order: 1))
+        CategoryItemView(category: Category(type: .entertainment, order: 1))
     }
 }

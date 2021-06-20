@@ -16,7 +16,7 @@ class StatisticsViewModel: ObservableObject {
     private let realmStore = RealmStore.shared
     
     init() {
-        realmStore.addDelegate(delegate: self)
+        realmStore.addCategoryDelegate(delegate: self)
     }
     
     deinit {
@@ -26,7 +26,9 @@ class StatisticsViewModel: ObservableObject {
 
 extension StatisticsViewModel: CategoryDelegate {
     func update(categories: [Category]) {
-        self.categories = categories
-        totalSpendings = categories.map { $0.amount }.reduce(0, +)
+        DispatchQueue.main.async {
+            self.categories = categories
+            self.totalSpendings = categories.map { $0.amount }.reduce(0, +)
+        }
     }
 }

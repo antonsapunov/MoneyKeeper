@@ -35,7 +35,7 @@ struct AddMoneyView: View {
                     textField.text = string
                 }
             Button(action: {
-                viewModel.createTransaction(category: category, amount: amount)
+                viewModel.createTransaction(category: category, direction: .outgoing, amount: amount)
                 presentationMode.wrappedValue.dismiss()
             }, label: {
                 Text("ADD")

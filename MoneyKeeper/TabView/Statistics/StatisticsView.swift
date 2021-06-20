@@ -45,7 +45,7 @@ struct StatisticsView: View {
         let categories = viewModel.categories
         var points: [DataPoint] = []
         for (index,category) in categories.enumerated() {
-            let legend = Legend(color: Color(category.color), label: LocalizedStringKey(category.name), order: index)
+            let legend = Legend(color: Color.black, label: LocalizedStringKey(category.name), order: index)
             points.append(DataPoint(value: category.amount, label: LocalizedStringKey(getTransformedAmount(amount: category.amount)), legend: legend))
         }
 

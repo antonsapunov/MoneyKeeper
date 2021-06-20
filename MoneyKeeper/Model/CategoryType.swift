@@ -7,45 +7,13 @@
 
 import SwiftUI
 
-enum CategoryType {
+enum CategoryType: String {
     
     case food
     case transport
     case shopping
     case entertainment
     case service
-    
-    init(stringValue: String) {
-        switch stringValue {
-        case "food":
-            self = .food
-        case "transport":
-            self = .transport
-        case "shopping":
-            self = .shopping
-        case "entertainment":
-            self = .entertainment
-        case "service":
-            self = .service
-        default:
-            fatalError("\(stringValue) category not found")
-        }
-    }
-    
-    var id: String {
-        switch self {
-        case .food:
-            return "food"
-        case .transport:
-            return "transport"
-        case .shopping:
-            return "shopping"
-        case .entertainment:
-            return "entertainment"
-        case .service:
-            return "service"
-        }
-    }
     
     var defaultName: String {
         switch self {
@@ -59,21 +27,6 @@ enum CategoryType {
             return "Entertainment"
         case .service:
             return "Service"
-        }
-    }
-    
-    var defaultColor: UIColor {
-        switch self {
-        case .food:
-            return .yellow
-        case .transport:
-            return .blue
-        case .shopping:
-            return .green
-        case .entertainment:
-            return .red
-        case .service:
-            return .gray
         }
     }
     

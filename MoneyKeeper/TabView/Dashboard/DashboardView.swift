@@ -18,7 +18,7 @@ struct DashboardView: View {
         NavigationView {
             VStack {
                 LazyVGrid(columns: columns) {
-                    ForEach(viewModel.categories, id: \.id) { category in
+                    ForEach(viewModel.categories) { category in
                         CategoryItemView(category: category)
                             .onTapGesture {
                                 selectedCategory = category

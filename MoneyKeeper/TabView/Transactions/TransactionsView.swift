@@ -14,7 +14,7 @@ struct TransactionsView: View {
     var body: some View {
         NavigationView {
             VStack {
-                ForEach(viewModel.transactions, id: \.id) { transaction in
+                ForEach(viewModel.transactions) { transaction in
                     TransactionItemView(transaction: transaction)
                 }
                 Spacer()

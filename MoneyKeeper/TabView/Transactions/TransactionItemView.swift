@@ -12,21 +12,32 @@ struct TransactionItemView: View {
 
     var body: some View {
         HStack {
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color(transaction.categoryType.defaultColor))
+            Rectangle()
+                .fill(Color.clear)
                 .frame(width: 24, height: 24)
-                .overlay(Image(uiImage: transaction.categoryType.defaultImage)
-                            .resizable()
-                            .frame(width: 20, height: 20))
+                .overlay(getTransactionImageView(direction: transaction.direction))
                 .padding(.leading, 16)
                 .multilineTextAlignment(.leading)
             Text(transaction.categoryType.defaultName)
                 .padding(.leading, 8)
                 .multilineTextAlignment(.leading)
             Spacer()
-            Text("\(transaction.amount)")
+            Text(getTransformedAmount(amount: transaction.amount))
                 .padding(.trailing, 16)
                 .multilineTextAlignment(.trailing)
+        }
+    }
+    
+    private func getTransactionImageView(direction: TransactionDirection) -> some View {
+        switch direction {
+        case .incoming:
+            return Image(uiImage: UIImage(systemName: "arrow.down.square")!)
+                        .resizable()
+                        .frame(width: 20, height: 20)
+        case .outgoing:
+            return Image(uiImage: UIImage(systemName: "arrow.up.square")!)
+                        .resizable()
+                        .frame(width: 20, height: 20)
         }
     }
     
@@ -37,6 +48,15 @@ struct TransactionItemView: View {
 
 struct TransactionItemView_Previews: PreviewProvider {
     static var previews: some View {
-        TransactionItemView(transaction: Transaction(categoryType: .food, amount: 10, currency: "$", time: Date()))
+        TransactionItemView(
+            transaction: Transaction(
+                categoryType: .food,
+                direction: .outgoing,
+                comment: "Test transaction",
+                amount: 10,
+                currency: "$",
+                time: Date()
+            )
+        )
     }
 }

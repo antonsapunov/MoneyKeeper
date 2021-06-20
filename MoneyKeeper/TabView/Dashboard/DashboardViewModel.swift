@@ -15,13 +15,13 @@ class DashboardViewModel: ObservableObject {
     private let realmStore = RealmStore.shared
     
     init() {
-        realmStore.addDelegate(delegate: self)
+        realmStore.addCategoryDelegate(delegate: self)
     }
     
-    func createTransaction(category: Category, amount: String) {
+    func createTransaction(category: Category, direction: TransactionDirection, amount: String) {
         guard let amountDouble = Double(amount) else { return }
         
-        realmStore.createTransaction(category: category, amount: amountDouble)
+        realmStore.createTransaction(category: category, direction: direction, amount: amountDouble)
     }
     
     deinit {
@@ -31,6 +31,8 @@ class DashboardViewModel: ObservableObject {
 
 extension DashboardViewModel: CategoryDelegate {
     func update(categories: [Category]) {
-        self.categories = categories
+        DispatchQueue.main.async {
+            self.categories = categories
+        }
     }
 }
