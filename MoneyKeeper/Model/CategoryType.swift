@@ -30,18 +30,18 @@ enum CategoryType: String {
         }
     }
     
-    var defaultImage: UIImage {
+    var defaultImage: Image {
         switch self {
         case .food:
-            return UIImage(named: "food")!
+            return Image("food")
         case .transport:
-            return UIImage(systemName: "car")!
+            return Image(systemName: "car")
         case .shopping:
-            return UIImage(systemName: "bag")!
+            return Image(systemName: "bag")
         case .entertainment:
-            return UIImage(systemName: "tv")!
+            return Image(systemName: "tv")
         case .service:
-            return UIImage(systemName: "heart.circle")!
+            return Image(systemName: "heart.circle")
         }
     }
     

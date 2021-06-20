@@ -87,7 +87,6 @@ class RealmStore {
                         let category = RealmCategory()
                         category.type = categoryModel.type.rawValue
                         category.name = categoryModel.name
-                        category.icon = categoryModel.icon.pngData()!
                         category.order = categoryModel.order
                         category.amount = categoryModel.amount
                         categoriesToWrite.append(category)

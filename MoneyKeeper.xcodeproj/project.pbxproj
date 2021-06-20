@@ -36,6 +36,8 @@
 		61BF64F62619ECA60000373D /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF64F52619ECA60000373D /* DashboardViewModel.swift */; };
 		61BF64FA2619F8570000373D /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF64F92619F8570000373D /* StatisticsViewModel.swift */; };
 		61C865E1267F7139001889D0 /* +Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C865E0267F7139001889D0 /* +Formatter.swift */; };
+		61C865E4267F7217001889D0 /* +Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C865E3267F7217001889D0 /* +Color.swift */; };
+		61C865E7267F7507001889D0 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C865E6267F7507001889D0 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		61BF64F52619ECA60000373D /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		61BF64F92619F8570000373D /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		61C865E0267F7139001889D0 /* +Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Formatter.swift"; sourceTree = "<group>"; };
+		61C865E3267F7217001889D0 /* +Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Color.swift"; sourceTree = "<group>"; };
+		61C865E6267F7507001889D0 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +190,7 @@
 				61799A6E2618C0460068B705 /* TabView */,
 				617DCB6A2618652300CFD67C /* MoneyKeeperApp.swift */,
 				617DCB6E2618652400CFD67C /* Assets.xcassets */,
+				61C865E5267F7466001889D0 /* DesignSystem */,
 				617DCB732618652400CFD67C /* Info.plist */,
 				617DCB702618652400CFD67C /* Preview Content */,
 			);
@@ -218,6 +223,15 @@
 				61C865E0267F7139001889D0 /* +Formatter.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		61C865E5267F7466001889D0 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				61C865E6267F7507001889D0 /* Colors.xcassets */,
+				61C865E3267F7217001889D0 /* +Color.swift */,
+			);
+			path = DesignSystem;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +302,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61C865E7267F7507001889D0 /* Colors.xcassets in Resources */,
 				617DCB722618652400CFD67C /* Preview Assets.xcassets in Resources */,
 				617DCB6F2618652400CFD67C /* Assets.xcassets in Resources */,
 			);
@@ -301,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				61799A1626186D2F0068B705 /* CategoryItemView.swift in Sources */,
+				61C865E4267F7217001889D0 /* +Color.swift in Sources */,
 				6125864A26232E3B00F6D768 /* +UIColor.swift in Sources */,
 				61799A64261899DA0068B705 /* AddMoneyView.swift in Sources */,
 				61C865E1267F7139001889D0 /* +Formatter.swift in Sources */,

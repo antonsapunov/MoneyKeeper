@@ -23,10 +23,8 @@ struct CategoryItemView: View {
                     .lineLimit(1)
             }
         } icon: {
-            RoundedRectangle(cornerRadius: 20)
-                .fill(Color.clear)
+            getTransformedImageView()
                 .frame(width: 48, height: 48)
-                .overlay(getTransformedImageView())
         }
         .labelStyle(VerticalLabelStyle())
     }
@@ -34,14 +32,19 @@ struct CategoryItemView: View {
     private func getTransformedImageView() -> some View {
         switch category.type {
         case .food:
-            return AnyView(Image(uiImage: category.icon)
-                            .resizable()
-                            .frame(width: 40, height: 40))
+            return AnyView(
+                category.icon
+                    .resizable()
+                    .frame(width: 40, height: 40)
+                    .foregroundColor(Color.Icon.foreground)
+            )
+            
         default:
-            return AnyView(Image(uiImage: category.icon)
-                            .resizable()
-                            .foregroundColor(.white)
-                            .frame(width: 24, height: 24))
+            return AnyView(
+                category.icon
+                    .resizable()
+                    .frame(width: 24, height: 24)
+            )
         }
     }
 }

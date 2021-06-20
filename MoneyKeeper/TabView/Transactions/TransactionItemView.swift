@@ -31,11 +31,11 @@ struct TransactionItemView: View {
     private func getTransactionImageView(direction: TransactionDirection) -> some View {
         switch direction {
         case .incoming:
-            return Image(uiImage: UIImage(systemName: "arrow.down.square")!)
+            return Image(systemName: "arrow.down.square")
                         .resizable()
                         .frame(width: 20, height: 20)
         case .outgoing:
-            return Image(uiImage: UIImage(systemName: "arrow.up.square")!)
+            return Image(systemName: "arrow.up.square")
                         .resizable()
                         .frame(width: 20, height: 20)
         }

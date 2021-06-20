@@ -11,7 +11,7 @@ struct Category: Identifiable {
     let id = UUID()
     let type: CategoryType
     let name: String
-    let icon: UIImage
+    let icon: Image
     let order: Int
     var amount: Double
     

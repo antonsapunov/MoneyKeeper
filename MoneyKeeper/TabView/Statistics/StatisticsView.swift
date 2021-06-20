@@ -45,8 +45,18 @@ struct StatisticsView: View {
         let categories = viewModel.categories
         var points: [DataPoint] = []
         for (index,category) in categories.enumerated() {
-            let legend = Legend(color: Color.black, label: LocalizedStringKey(category.name), order: index)
-            points.append(DataPoint(value: category.amount, label: LocalizedStringKey(category.amount.formattedWithSeparator(2) + " $"), legend: legend))
+            let legend = Legend(
+                color: Color.Chart.lines,
+                label: LocalizedStringKey(category.name),
+                order: index
+            )
+            points.append(
+                DataPoint(
+                    value: category.amount,
+                    label: LocalizedStringKey(category.amount.formattedWithSeparator(2) + " $"),
+                    legend: legend
+                )
+            )
         }
 
         return HorizontalBarChartView(dataPoints: points)
