@@ -24,5 +24,9 @@ struct Constants {
     static let graph = "Graph"
     
     static let totalSpendings = "Total spendings: "
+    
+    struct DateFormat {
+        static let transactionDate = "dd.MM.yyyy"
+    }
 }
 

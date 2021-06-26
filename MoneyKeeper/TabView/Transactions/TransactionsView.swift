@@ -13,12 +13,18 @@ struct TransactionsView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                ForEach(viewModel.transactions) { transaction in
-                    TransactionItemView(transaction: transaction)
+            List {
+                ForEach(Array(viewModel.transactionsByDate.keys), id: \.self) { date in
+                    Section(header: Text(date)) {
+                        if let transactions = viewModel.transactionsByDate[date] {
+                            ForEach(transactions) { transaction in
+                                TransactionItemView(transaction: transaction)
+                            }
+                        }
+                    }
                 }
-                Spacer()
             }
+            .listStyle(InsetGroupedListStyle())
             .padding(.top, 16)
             .navigationTitle(Constants.transactions)
         }

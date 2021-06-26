@@ -16,14 +16,12 @@ struct TransactionItemView: View {
                 .fill(Color.clear)
                 .frame(width: 24, height: 24)
                 .overlay(getTransactionImageView(direction: transaction.direction))
-                .padding(.leading, 16)
                 .multilineTextAlignment(.leading)
             Text(transaction.categoryType.defaultName)
                 .padding(.leading, 8)
                 .multilineTextAlignment(.leading)
             Spacer()
             Text(transaction.amount.formattedWithSeparator(2) + "$")
-                .padding(.trailing, 16)
                 .multilineTextAlignment(.trailing)
         }
     }
