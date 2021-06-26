@@ -14,7 +14,7 @@ struct TransactionsView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(Array(viewModel.transactionsByDate.keys), id: \.self) { date in
+                ForEach(Array(viewModel.transactionsByDate.keys.sorted(by: >)), id: \.self) { date in
                     Section(header: Text(date)) {
                         if let transactions = viewModel.transactionsByDate[date] {
                             ForEach(transactions) { transaction in
