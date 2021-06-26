@@ -18,15 +18,15 @@ enum CategoryType: String {
     var defaultName: String {
         switch self {
         case .food:
-            return "Food"
+            return Constants.food
         case .transport:
-            return "Transport"
+            return Constants.transport
         case .shopping:
-            return "Shopping"
+            return Constants.shopping
         case .entertainment:
-            return "Entertainment"
+            return Constants.entertainment
         case .service:
-            return "Service"
+            return Constants.service
         }
     }
     

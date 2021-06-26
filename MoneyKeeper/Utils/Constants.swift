@@ -8,7 +8,21 @@
 import Foundation
 
 struct Constants {
+    static let categories = "Categories"
     static let transactions = "Transactions"
+    static let statistics = "Statistics"
+    static let food = "Food"
+    static let transport = "Transport"
+    static let shopping = "Shopping"
+    static let entertainment = "Entertainment"
+    static let service = "Service"
     
+    static let spentAmountHint = "Spent Amount"
+    static let add = "ADD"
+    
+    static let lines = "Lines"
+    static let graph = "Graph"
+    
+    static let totalSpendings = "Total spendings: "
 }
 

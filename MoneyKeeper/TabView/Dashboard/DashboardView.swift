@@ -32,7 +32,7 @@ struct DashboardView: View {
                 }
                 Spacer()
             }
-            .navigationTitle("Categories")
+            .navigationTitle(Constants.categories)
         }
     }
 }

@@ -20,7 +20,7 @@ struct AddMoneyView: View {
             Text(category.name)
                 .font(.title)
             Spacer()
-            TextField("Spent Amount", text: $amount)
+            TextField(Constants.spentAmountHint, text: $amount)
                 .keyboardType(.decimalPad)
                 .frame(height: 48)
                 .font(.title)
@@ -38,7 +38,7 @@ struct AddMoneyView: View {
                 viewModel.createTransaction(category: category, direction: .outgoing, amount: amount)
                 presentationMode.wrappedValue.dismiss()
             }, label: {
-                Text("ADD")
+                Text(Constants.add)
                     .frame(width: 160, height: 48)
                     .font(.title)
                     .foregroundColor(Color.Button.foreground)

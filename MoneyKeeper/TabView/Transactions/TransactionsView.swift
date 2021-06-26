@@ -20,7 +20,7 @@ struct TransactionsView: View {
                 Spacer()
             }
             .padding(.top, 16)
-            .navigationTitle("Transactions")
+            .navigationTitle(Constants.transactions)
         }
     }
 }

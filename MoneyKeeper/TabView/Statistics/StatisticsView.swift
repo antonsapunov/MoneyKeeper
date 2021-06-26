@@ -8,9 +8,18 @@
 import SwiftUI
 import SwiftUICharts
 
-enum ChartType: String, CaseIterable {
-    case lines = "Lines"
-    case graph = "Graph"
+enum ChartType: CaseIterable {
+    case lines
+    case graph
+    
+    var title: String {
+        switch self {
+        case .lines:
+            return Constants.lines
+        case .graph:
+            return Constants.graph
+        }
+    }
 }
 
 struct StatisticsView: View {
@@ -23,7 +32,7 @@ struct StatisticsView: View {
             VStack(alignment: .center) {
                 Picker(selection: $chartType, label: EmptyView()) {
                     ForEach(ChartType.allCases, id: \.self) { type in
-                        Text(type.rawValue).tag(type)
+                        Text(type.title).tag(type)
                     }
                 }
                 .pickerStyle(SegmentedPickerStyle())
@@ -32,12 +41,12 @@ struct StatisticsView: View {
                     print(chartType)
                 })
                 getChartView(type: chartType)
-                Text("Total spendings: " + viewModel.totalSpendings.formattedWithSeparator(2) + " $")
+                Text(Constants.totalSpendings + viewModel.totalSpendings.formattedWithSeparator(2) + " $")
                     .font(.title2)
                     .padding()
                 Spacer()
             }
-            .navigationTitle("Statistics")
+            .navigationTitle(Constants.statistics)
         }
     }
     
