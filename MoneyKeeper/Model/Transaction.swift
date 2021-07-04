@@ -8,7 +8,7 @@
 import Foundation
 
 struct Transaction: Identifiable {
-    let id = UUID()
+    let id: String
     let categoryType: CategoryType
     let direction: TransactionDirection
     let comment: String

@@ -45,6 +45,7 @@ struct TransactionItemView_Previews: PreviewProvider {
     static var previews: some View {
         TransactionItemView(
             transaction: Transaction(
+                id: UUID().uuidString,
                 categoryType: .food,
                 direction: .outgoing,
                 comment: "Test transaction",

@@ -21,9 +21,6 @@ protocol TransactionDelegate: UpdateDelegate {
 class RealmStore {
     
     static let shared = RealmStore()
-
-    private var categories: [Category] = []
-    private var transactions: [Transaction] = []
     
     private var categoriesInitial: [Category] = [
         Category(type: .food),
@@ -126,12 +123,14 @@ class RealmStore {
         }
     }
     
-    func deleteTransaction(transaction: RealmTransaction) {
+    func deleteTransaction(transactionID: String) {
         DispatchQueue.global(qos: .background).async {
             autoreleasepool {
                 do {
                     let realm = try Realm()
                     try realm.write {
+                        let transaction = realm.objects(RealmTransaction.self)
+                            .filter("id == %@", transactionID)
                         realm.delete(transaction)
                     }
                 } catch let error {
@@ -141,13 +140,14 @@ class RealmStore {
         }
     }
     
-    func getTransactions() -> [Transaction] {
-        return Array(transactionResults)
+    private func getTransactionsByDate(_ transactions: Results<RealmTransaction>) -> [Transaction] {
+        return transactions
             .sorted(by: { $0.date > $1.date })
             .compactMap {
                 guard let categoryType = CategoryType(rawValue: $0.categoryType),
                       let transactionDirection = TransactionDirection(rawValue: $0.direction) else { return nil }
             return Transaction(
+                id: $0.id,
                 categoryType: categoryType,
                 direction: transactionDirection,
                 comment: $0.comment,
@@ -161,18 +161,14 @@ class RealmStore {
     private func addTransactionObserver() {
         transactionsNotificationToken = transactionResults.observe { [weak self] changes in
             guard let self = self else { return }
-            var transactionByCategory: [String: [RealmTransaction]] = [:]
             switch changes {
             case .initial(let transactions):
-                transactionByCategory = Dictionary(grouping: transactions) { $0.categoryType
-                }
                 //MARK: create categories
-                self.updateCategories(with: transactionByCategory)
+                self.updateCategories(with: transactions)
+                self.updateTransactions(with: transactions)
             case .update(let transactions, _, _, _):
-                transactionByCategory = Dictionary(grouping: transactions) { $0.categoryType
-                }
-                self.updateCategories(with: transactionByCategory)
-                self.updateTransactions()
+                self.updateCategories(with: transactions)
+                self.updateTransactions(with: transactions)
             case .error(let error):
                 // An error occurred while opening the Realm file on the background worker thread
                 fatalError("\(error)")
@@ -180,8 +176,11 @@ class RealmStore {
         }
     }
     
-    private func updateCategories(with transactionByCategory: [String: [RealmTransaction]]) {
-        categories = getActualCategories()
+    private func updateCategories(with transactions: Results<RealmTransaction>) {
+        let transactionByCategory = Dictionary(grouping: transactions) {
+            $0.categoryType
+        }
+        var categories = getActualCategories()
         for key in transactionByCategory.keys {
             if let index = categories.firstIndex(where: { $0.type.rawValue == key }),
                let amount = transactionByCategory[key]?.compactMap({ $0.amount }).reduce(0, +) {
@@ -191,8 +190,8 @@ class RealmStore {
         updateUI(with: categories)
     }
     
-    private func updateTransactions() {
-        updateUI(with: getTransactions())
+    private func updateTransactions(with transactions: Results<RealmTransaction>) {
+        updateUI(with: getTransactionsByDate(transactions))
     }
     
     private func updateUI(with categories: [Category]) {

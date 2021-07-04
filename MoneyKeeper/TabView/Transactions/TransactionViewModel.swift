@@ -15,19 +15,17 @@ class TransactionViewModel: ObservableObject {
     private let realmStore = RealmStore.shared
     
     init() {
-        loadTransactions()
         realmStore.addTransactionDelegate(delegate: self)
     }
     
-    private func loadTransactions() {
-        let transactions = realmStore.getTransactions()
-        groupTransactionsByDate(transactions)
+    func deleteTransaction(transactionID: String) {
+        realmStore.deleteTransaction(transactionID: transactionID)
     }
     
-    private func groupTransactionsByDate(_ transactions: [Transaction]) {
+    private func getTransactionsByDate(_ transactions: [Transaction]) -> [String: [Transaction]] {
         let formatter = DateFormatter()
         formatter.dateFormat = Constants.DateFormat.transactionDate
-        transactionsByDate = Dictionary(
+        return Dictionary(
             grouping: transactions,
             by: { $0.time.transform(with: formatter) }
         )
@@ -41,8 +39,9 @@ class TransactionViewModel: ObservableObject {
 
 extension TransactionViewModel: TransactionDelegate {
     func update(transactions: [Transaction]) {
+        let transactionsByDate = getTransactionsByDate(transactions)
         DispatchQueue.main.async {
-            self.groupTransactionsByDate(transactions)
+            self.transactionsByDate = transactionsByDate
         }
     }
 }

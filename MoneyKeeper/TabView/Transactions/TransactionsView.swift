@@ -19,6 +19,18 @@ struct TransactionsView: View {
                         if let transactions = viewModel.transactionsByDate[date] {
                             ForEach(transactions) { transaction in
                                 TransactionItemView(transaction: transaction)
+                                    .swipeActions(edge: .trailing) {
+                                        Button(role: .destructive) {
+                                            viewModel.deleteTransaction(transactionID: transaction.id)
+                                        } label: {
+                                            Label(Constants.delete, systemImage: "trash")
+                                        }
+                                        Button {
+                                            print("Update")
+                                        } label: {
+                                            Label("Update", systemImage: "pencil")
+                                        }
+                                    }
                             }
                         }
                     }

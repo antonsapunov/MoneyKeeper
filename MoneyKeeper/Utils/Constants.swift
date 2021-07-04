@@ -19,6 +19,7 @@ struct Constants {
     
     static let spentAmountHint = "Spent Amount"
     static let add = "ADD"
+    static let delete = "Delete"
     
     static let lines = "Lines"
     static let graph = "Graph"
