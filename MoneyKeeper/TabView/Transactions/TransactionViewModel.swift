@@ -16,6 +16,7 @@ class TransactionViewModel: ObservableObject {
     
     init() {
         realmStore.addTransactionDelegate(delegate: self)
+        blabla
     }
     
     func deleteTransaction(transactionID: String) {
