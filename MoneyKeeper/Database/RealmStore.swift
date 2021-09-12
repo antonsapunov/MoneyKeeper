@@ -101,11 +101,11 @@ class RealmStore {
         }
     }
     
-    func createTransaction(category: Category, comment: String? = nil, direction: TransactionDirection, amount: Double) {
+    func createTransaction(categoryType: CategoryType, comment: String? = nil, direction: TransactionDirection, amount: Double) {
         DispatchQueue.global(qos: .background).async {
             autoreleasepool {
                 let transaction = RealmTransaction()
-                transaction.categoryType = category.type.rawValue
+                transaction.categoryType = categoryType.rawValue
                 transaction.direction = direction.rawValue
                 transaction.comment = comment ?? ""
                 transaction.amount = amount
@@ -115,6 +115,50 @@ class RealmStore {
                     let realm = try Realm()
                     try realm.write {
                         realm.add(transaction, update: .modified)
+                    }
+                } catch let error {
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    func getTransaction(transactionID: String, comletionHandler: @escaping (Transaction?) -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            autoreleasepool {
+                do {
+                    let realm = try Realm()
+                    guard let realmTransaction = realm.object(ofType: RealmTransaction.self, forPrimaryKey: transactionID),
+                          let categoryType = CategoryType(rawValue: realmTransaction.categoryType),
+                          let transactionDirection = TransactionDirection(rawValue: realmTransaction.direction) else { return }
+                    let transaction = Transaction(
+                        id: realmTransaction.id,
+                        categoryType: categoryType,
+                        direction: transactionDirection,
+                        comment: realmTransaction.comment,
+                        amount: realmTransaction.amount,
+                        currency: realmTransaction.currency,
+                        time: realmTransaction.date
+                    )
+                    comletionHandler(transaction)
+                } catch let error {
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    func updateTransaction(transactionID: String, amount: Double) {
+        DispatchQueue.global(qos: .background).async {
+            autoreleasepool {
+                do {
+                    let realm = try Realm()
+                    let transactions = realm.objects(RealmTransaction.self)
+                        .filter("id == %@", transactionID)
+                    if let transaction = transactions.first {
+                        try realm.write {
+                            transaction.amount = amount
+                        }
                     }
                 } catch let error {
                     print(error)

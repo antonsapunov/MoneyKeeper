@@ -27,6 +27,8 @@
 		617DCB722618652400CFD67C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 617DCB712618652400CFD67C /* Preview Assets.xcassets */; };
 		619F9063261A3C360097C07E /* RealmCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619F9062261A3C360097C07E /* RealmCategory.swift */; };
 		61A65646266EC2FF00CB328B /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A65645266EC2FF00CB328B /* TransactionsView.swift */; };
+		61AAA8AC26EE747D0012D02B /* UpdateTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AAA8AB26EE747D0012D02B /* UpdateTransactionView.swift */; };
+		61AAA8AE26EE74EC0012D02B /* UpdateTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AAA8AD26EE74EC0012D02B /* UpdateTransactionViewModel.swift */; };
 		61B919A0267160110009F963 /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B9199F267160110009F963 /* TransactionViewModel.swift */; };
 		61B919A2267162D70009F963 /* TransactionItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B919A1267162D70009F963 /* TransactionItemView.swift */; };
 		61B919A4267163600009F963 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B919A3267163600009F963 /* Transaction.swift */; };
@@ -60,6 +62,8 @@
 		617DCB732618652400CFD67C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		619F9062261A3C360097C07E /* RealmCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmCategory.swift; sourceTree = "<group>"; };
 		61A65645266EC2FF00CB328B /* TransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsView.swift; sourceTree = "<group>"; };
+		61AAA8AB26EE747D0012D02B /* UpdateTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTransactionView.swift; sourceTree = "<group>"; };
+		61AAA8AD26EE74EC0012D02B /* UpdateTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTransactionViewModel.swift; sourceTree = "<group>"; };
 		61B9199F267160110009F963 /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
 		61B919A1267162D70009F963 /* TransactionItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionItemView.swift; sourceTree = "<group>"; };
 		61B919A3267163600009F963 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -210,11 +214,21 @@
 		61A65644266EC2C600CB328B /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
+				61AAA8AA26EE74650012D02B /* UpdateTransactionView */,
 				61A65645266EC2FF00CB328B /* TransactionsView.swift */,
 				61B919A1267162D70009F963 /* TransactionItemView.swift */,
 				61B9199F267160110009F963 /* TransactionViewModel.swift */,
 			);
 			path = Transactions;
+			sourceTree = "<group>";
+		};
+		61AAA8AA26EE74650012D02B /* UpdateTransactionView */ = {
+			isa = PBXGroup;
+			children = (
+				61AAA8AB26EE747D0012D02B /* UpdateTransactionView.swift */,
+				61AAA8AD26EE74EC0012D02B /* UpdateTransactionViewModel.swift */,
+			);
+			path = UpdateTransactionView;
 			sourceTree = "<group>";
 		};
 		61C865E2267F7162001889D0 /* Extensions */ = {
@@ -318,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61AAA8AC26EE747D0012D02B /* UpdateTransactionView.swift in Sources */,
 				61799A1626186D2F0068B705 /* CategoryItemView.swift in Sources */,
 				61C865E4267F7217001889D0 /* +Color.swift in Sources */,
 				6125864A26232E3B00F6D768 /* +UIColor.swift in Sources */,
@@ -343,6 +358,7 @@
 				61D12F022687AF770003DE57 /* +Date.swift in Sources */,
 				612E88492618E52A00E51C94 /* CategoryType.swift in Sources */,
 				61BF64F62619ECA60000373D /* DashboardViewModel.swift in Sources */,
+				61AAA8AE26EE74EC0012D02B /* UpdateTransactionViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

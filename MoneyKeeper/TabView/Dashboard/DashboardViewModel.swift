@@ -21,7 +21,7 @@ class DashboardViewModel: ObservableObject {
     func createTransaction(category: Category, direction: TransactionDirection, amount: String) {
         guard let amountDouble = Double(amount) else { return }
         
-        realmStore.createTransaction(category: category, direction: direction, amount: amountDouble)
+        realmStore.createTransaction(categoryType: category.type, direction: direction, amount: amountDouble)
     }
     
     deinit {

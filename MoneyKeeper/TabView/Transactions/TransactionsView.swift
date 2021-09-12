@@ -15,30 +15,42 @@ struct TransactionsView: View {
         NavigationView {
             List {
                 ForEach(Array(viewModel.transactionsByDate.keys.sorted(by: >)), id: \.self) { date in
-                    Section(header: Text(date)) {
-                        if let transactions = viewModel.transactionsByDate[date] {
-                            ForEach(transactions) { transaction in
-                                TransactionItemView(transaction: transaction)
-                                    .swipeActions(edge: .trailing) {
-                                        Button(role: .destructive) {
-                                            viewModel.deleteTransaction(transactionID: transaction.id)
-                                        } label: {
-                                            Label(Constants.delete, systemImage: "trash")
-                                        }
-                                        Button {
-                                            print("Update")
-                                        } label: {
-                                            Label("Update", systemImage: "pencil")
-                                        }
-                                    }
-                            }
-                        }
-                    }
+                    getSection(for: date)
                 }
             }
             .listStyle(InsetGroupedListStyle())
             .padding(.top, 16)
             .navigationTitle(Constants.transactions)
+            .sheet(item: $viewModel.transactionForUdpate) { transaction in
+                UpdateTransactionView(transaction: transaction)
+                    .environmentObject(UpdateTransactionViewModel())
+            }
+        }
+    }
+    
+    private func getSection(for date: String) -> some View {
+        return Section(header: Text(date)) {
+            if let transactions = viewModel.transactionsByDate[date] {
+                ForEach(transactions) { transaction in
+                    getSectionItem(for: transaction)
+                }
+            }
+        }
+    }
+    
+    private func getSectionItem(for transaction: Transaction) -> some View {
+        return TransactionItemView(transaction: transaction)
+            .swipeActions(edge: .trailing) {
+            Button(role: .destructive) {
+                viewModel.deleteTransaction(by: transaction.id)
+            } label: {
+                Label(Constants.delete, systemImage: "trash")
+            }
+            Button {
+                viewModel.getTransaction(by: transaction.id)
+            } label: {
+                Label("Update", systemImage: "pencil")
+            }
         }
     }
 }
