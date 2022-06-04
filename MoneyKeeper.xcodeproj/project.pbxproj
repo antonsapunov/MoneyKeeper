@@ -41,7 +41,18 @@
 		61C865E4267F7217001889D0 /* +Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C865E3267F7217001889D0 /* +Color.swift */; };
 		61C865E7267F7507001889D0 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C865E6267F7507001889D0 /* Colors.xcassets */; };
 		61D12F022687AF770003DE57 /* +Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D12F012687AF770003DE57 /* +Date.swift */; };
+		61DFF24D284B8D2400C852F6 /* MoneyKeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DFF24C284B8D2400C852F6 /* MoneyKeeperTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		61DFF24E284B8D2400C852F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 617DCB5F2618652300CFD67C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 617DCB662618652300CFD67C;
+			remoteInfo = MoneyKeeper;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		6125864926232E3B00F6D768 /* +UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+UIColor.swift"; sourceTree = "<group>"; };
@@ -76,6 +87,8 @@
 		61C865E3267F7217001889D0 /* +Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Color.swift"; sourceTree = "<group>"; };
 		61C865E6267F7507001889D0 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		61D12F012687AF770003DE57 /* +Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Date.swift"; sourceTree = "<group>"; };
+		61DFF24A284B8D2400C852F6 /* MoneyKeeperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoneyKeeperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		61DFF24C284B8D2400C852F6 /* MoneyKeeperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyKeeperTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +100,13 @@
 				612E88362618DDA200E51C94 /* Introspect in Frameworks */,
 				612E882C2618CF8600E51C94 /* RealmSwift in Frameworks */,
 				61799A61261898D90068B705 /* SwiftUICharts in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		61DFF247284B8D2400C852F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				617DCB692618652300CFD67C /* MoneyKeeper */,
+				61DFF24B284B8D2400C852F6 /* MoneyKeeperTests */,
 				617DCB682618652300CFD67C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -182,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				617DCB672618652300CFD67C /* MoneyKeeper.app */,
+				61DFF24A284B8D2400C852F6 /* MoneyKeeperTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -251,6 +273,14 @@
 			path = DesignSystem;
 			sourceTree = "<group>";
 		};
+		61DFF24B284B8D2400C852F6 /* MoneyKeeperTests */ = {
+			isa = PBXGroup;
+			children = (
+				61DFF24C284B8D2400C852F6 /* MoneyKeeperTests.swift */,
+			);
+			path = MoneyKeeperTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -277,17 +307,39 @@
 			productReference = 617DCB672618652300CFD67C /* MoneyKeeper.app */;
 			productType = "com.apple.product-type.application";
 		};
+		61DFF249284B8D2400C852F6 /* MoneyKeeperTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 61DFF252284B8D2400C852F6 /* Build configuration list for PBXNativeTarget "MoneyKeeperTests" */;
+			buildPhases = (
+				61DFF246284B8D2400C852F6 /* Sources */,
+				61DFF247284B8D2400C852F6 /* Frameworks */,
+				61DFF248284B8D2400C852F6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				61DFF24F284B8D2400C852F6 /* PBXTargetDependency */,
+			);
+			name = MoneyKeeperTests;
+			productName = MoneyKeeperTests;
+			productReference = 61DFF24A284B8D2400C852F6 /* MoneyKeeperTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		617DCB5F2618652300CFD67C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					617DCB662618652300CFD67C = {
 						CreatedOnToolsVersion = 12.4;
+					};
+					61DFF249284B8D2400C852F6 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 617DCB662618652300CFD67C;
 					};
 				};
 			};
@@ -310,6 +362,7 @@
 			projectRoot = "";
 			targets = (
 				617DCB662618652300CFD67C /* MoneyKeeper */,
+				61DFF249284B8D2400C852F6 /* MoneyKeeperTests */,
 			);
 		};
 /* End PBXProject section */
@@ -322,6 +375,13 @@
 				61C865E7267F7507001889D0 /* Colors.xcassets in Resources */,
 				617DCB722618652400CFD67C /* Preview Assets.xcassets in Resources */,
 				617DCB6F2618652400CFD67C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		61DFF248284B8D2400C852F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,7 +422,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		61DFF246284B8D2400C852F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				61DFF24D284B8D2400C852F6 /* MoneyKeeperTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		61DFF24F284B8D2400C852F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 617DCB662618652300CFD67C /* MoneyKeeper */;
+			targetProxy = 61DFF24E284B8D2400C852F6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		617DCB742618652400CFD67C /* Debug */ = {
@@ -488,7 +564,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"MoneyKeeper/Preview Content\"";
-				DEVELOPMENT_TEAM = U8GGDK7QHE;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = MoneyKeeper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -510,7 +586,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"MoneyKeeper/Preview Content\"";
-				DEVELOPMENT_TEAM = U8GGDK7QHE;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = MoneyKeeper/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -522,6 +598,44 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		61DFF250284B8D2400C852F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.antonsapunov.MoneyKeeperTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoneyKeeper.app/MoneyKeeper";
+			};
+			name = Debug;
+		};
+		61DFF251284B8D2400C852F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.antonsapunov.MoneyKeeperTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoneyKeeper.app/MoneyKeeper";
 			};
 			name = Release;
 		};
@@ -546,6 +660,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		61DFF252284B8D2400C852F6 /* Build configuration list for PBXNativeTarget "MoneyKeeperTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				61DFF250284B8D2400C852F6 /* Debug */,
+				61DFF251284B8D2400C852F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -554,7 +677,7 @@
 			repositoryURL = "https://github.com/realm/realm-cocoa.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 10.7.2;
+				minimumVersion = 10.28.0;
 			};
 		};
 		612E88342618DDA200E51C94 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
@@ -570,7 +693,7 @@
 			repositoryURL = "https://github.com/mecid/SwiftUICharts";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.5.2;
+				minimumVersion = 0.7.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
