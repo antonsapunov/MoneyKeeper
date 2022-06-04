@@ -19,5 +19,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build
-      run: set -o pipefail && xcodebuild clean -scheme $SCHEME -destination $DESTINATION -derivedDataPath $DERIVED_DATA_PATH build-for-testing
+      run: |
+      set -o pipefail && xcodebuild clean -scheme $SCHEME -destination $DESTINATION -derivedDataPath $DERIVED_DATA_PATH build-for-testing
       
