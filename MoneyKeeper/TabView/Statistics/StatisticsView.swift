@@ -37,9 +37,6 @@ struct StatisticsView: View {
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 .padding()
-                .onChange(of: chartType, perform: { value in
-                    print(chartType)
-                })
                 getChartView(type: chartType)
                 Text(Constants.totalSpendings + viewModel.totalSpendings.formattedWithSeparator(2) + " $")
                     .font(.title2)
@@ -52,31 +49,48 @@ struct StatisticsView: View {
     
     private func getChartView(type: ChartType) -> some View {
         let categories = viewModel.categories
-        var points: [DataPoint] = []
-        for (index,category) in categories.enumerated() {
-            let legend = Legend(
-                color: Color.Chart.lines,
-                label: LocalizedStringKey(category.name),
-                order: index
-            )
-            points.append(
-                DataPoint(
-                    value: category.amount,
-                    label: LocalizedStringKey(category.amount.formattedWithSeparator(2) + " $"),
-                    legend: legend
-                )
+        switch type {
+        case .lines:
+            return AnyView(getBarChart(categories: categories)).padding()
+        case .graph:
+            return AnyView(getPieChart(categories: categories)).padding()
+        }
+    }
+    
+    private func getBarChart(categories: [Category]) -> some View {
+        let points: [BarChartDataPoint] = categories.compactMap { category in
+            guard category.amount != 0 else { return nil }
+            return BarChartDataPoint(
+                value: category.amount,
+                xAxisLabel: category.name + " " + category.amount.formattedWithSeparator(2) + " $",
+                description: category.amount.formattedWithSeparator(2) + " $",
+                colour: ColourStyle(colour: category.type.defaultColor)
             )
         }
-
-        return HorizontalBarChartView(dataPoints: points)
-            .padding()
-//        switch type {
-//        case .lines:
-//            return AnyView(BarChartView(data: ChartData(values: [("2018 Q4",63150), ("2019 Q1",50900), ("2019 Q2",77550), ("2019 Q3",79600), ("2019 Q4",92550)]), title: "Sales", legend: "Quarterly", form: ChartForm.extraLarge)
-//                .padding())
-//        case .graph:
-//            return AnyView(PieChartView(data: [8,23,54,32], title: "Title", legend: "Legendary", form:  ChartForm.large))
-//        }
+        let data = HorizontalBarChartData(dataSets: BarDataSet(dataPoints: points), barStyle: .init(colourFrom: ColourFrom.dataPoints))
+        return HorizontalBarChart(chartData: data)
+            .yAxisLabels(chartData: data)
+            .frame(minWidth: 300, maxWidth: 600, minHeight: 300, maxHeight: 600, alignment: .center)
+    }
+    
+    private func getPieChart(categories: [Category]) -> some View {
+        let points: [PieChartDataPoint] = categories.compactMap { category in
+            guard category.amount != 0 else { return nil }
+            return PieChartDataPoint(
+                value: category.amount,
+                colour: category.type.defaultColor,
+                label: .label(text: category.name + "\n" + category.amount.formattedWithSeparator(2) + " $", colour: .black, font: .title2, rFactor: 1.6)
+            )
+        }
+        return PieChart(chartData:
+            PieChartData(
+                dataSets: PieDataSet(
+                    dataPoints: points,
+                    legendTitle: "Pie"
+                ),
+                metadata: ChartMetadata()
+            )
+        ).frame(minWidth: 100, maxWidth: 200, minHeight: 100, maxHeight: 600, alignment: .center)
     }
 }
 

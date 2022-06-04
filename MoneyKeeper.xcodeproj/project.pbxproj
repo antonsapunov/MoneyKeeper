@@ -18,13 +18,13 @@
 		61799A1626186D2F0068B705 /* CategoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61799A1526186D2F0068B705 /* CategoryItemView.swift */; };
 		61799A1A261874F60068B705 /* VerticalLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61799A19261874F60068B705 /* VerticalLabelStyle.swift */; };
 		61799A4E26188AAC0068B705 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61799A4D26188AAC0068B705 /* StatisticsView.swift */; };
-		61799A61261898D90068B705 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 61799A60261898D90068B705 /* SwiftUICharts */; };
 		61799A64261899DA0068B705 /* AddMoneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61799A63261899DA0068B705 /* AddMoneyView.swift */; };
 		61799A702618C0540068B705 /* TabViewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61799A6F2618C0540068B705 /* TabViewScreen.swift */; };
 		617DCB6B2618652300CFD67C /* MoneyKeeperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617DCB6A2618652300CFD67C /* MoneyKeeperApp.swift */; };
 		617DCB6D2618652300CFD67C /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617DCB6C2618652300CFD67C /* DashboardView.swift */; };
 		617DCB6F2618652400CFD67C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 617DCB6E2618652400CFD67C /* Assets.xcassets */; };
 		617DCB722618652400CFD67C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 617DCB712618652400CFD67C /* Preview Assets.xcassets */; };
+		6183F584284BFCF600E1F975 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 6183F583284BFCF600E1F975 /* SwiftUICharts */; };
 		619F9063261A3C360097C07E /* RealmCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619F9062261A3C360097C07E /* RealmCategory.swift */; };
 		61A65646266EC2FF00CB328B /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A65645266EC2FF00CB328B /* TransactionsView.swift */; };
 		61AAA8AC26EE747D0012D02B /* UpdateTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AAA8AB26EE747D0012D02B /* UpdateTransactionView.swift */; };
@@ -97,9 +97,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				612E882E2618CF8600E51C94 /* Realm in Frameworks */,
+				6183F584284BFCF600E1F975 /* SwiftUICharts in Frameworks */,
 				612E88362618DDA200E51C94 /* Introspect in Frameworks */,
 				612E882C2618CF8600E51C94 /* RealmSwift in Frameworks */,
-				61799A61261898D90068B705 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,10 +298,10 @@
 			);
 			name = MoneyKeeper;
 			packageProductDependencies = (
-				61799A60261898D90068B705 /* SwiftUICharts */,
 				612E882B2618CF8600E51C94 /* RealmSwift */,
 				612E882D2618CF8600E51C94 /* Realm */,
 				612E88352618DDA200E51C94 /* Introspect */,
+				6183F583284BFCF600E1F975 /* SwiftUICharts */,
 			);
 			productName = MoneyKeeper;
 			productReference = 617DCB672618652300CFD67C /* MoneyKeeper.app */;
@@ -353,9 +353,9 @@
 			);
 			mainGroup = 617DCB5E2618652300CFD67C;
 			packageReferences = (
-				61799A5F261898D90068B705 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 				612E882A2618CF8600E51C94 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				612E88342618DDA200E51C94 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				6183F582284BFCF500E1F975 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
 			);
 			productRefGroup = 617DCB682618652300CFD67C /* Products */;
 			projectDirPath = "";
@@ -680,12 +680,12 @@
 				minimumVersion = 0.1.3;
 			};
 		};
-		61799A5F261898D90068B705 /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
+		6183F582284BFCF500E1F975 /* XCRemoteSwiftPackageReference "SwiftUICharts" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mecid/SwiftUICharts";
+			repositoryURL = "https://github.com/willdale/SwiftUICharts";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.7.0;
+				minimumVersion = 2.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -706,9 +706,9 @@
 			package = 612E88342618DDA200E51C94 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
 		};
-		61799A60261898D90068B705 /* SwiftUICharts */ = {
+		6183F583284BFCF600E1F975 /* SwiftUICharts */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 61799A5F261898D90068B705 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
+			package = 6183F582284BFCF500E1F975 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
 			productName = SwiftUICharts;
 		};
 /* End XCSwiftPackageProductDependency section */

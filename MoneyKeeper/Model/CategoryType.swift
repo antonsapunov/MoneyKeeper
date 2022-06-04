@@ -59,4 +59,19 @@ enum CategoryType: String {
             return 5
         }
     }
+    
+    var defaultColor: Color {
+        switch self {
+        case .food:
+            return .black
+        case .transport:
+            return .blue
+        case .shopping:
+            return .yellow
+        case .entertainment:
+            return .red
+        case .service:
+            return .purple
+        }
+    }
 }
