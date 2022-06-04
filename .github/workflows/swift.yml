@@ -10,7 +10,7 @@ jobs:
   build:
     name: Build
     env:
-      SCHEME: "Release"
+      SCHEME: "MoneyKeeper"
       DEVICE: "iPhone 11"
       DERIVED_DATA_PATH: "DerivedData"
     runs-on: macOS-latest
