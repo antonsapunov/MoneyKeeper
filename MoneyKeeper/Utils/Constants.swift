@@ -29,6 +29,7 @@ struct Constants {
     
     struct DateFormat {
         static let transactionDate = "dd.MM.yyyy"
+        static let transactionTime = "HH:mm"
     }
 }
 

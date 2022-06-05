@@ -21,8 +21,14 @@ struct TransactionItemView: View {
                 .padding(.leading, 8)
                 .multilineTextAlignment(.leading)
             Spacer()
-            Text(transaction.amount.formattedWithSeparator(2) + "$")
-                .multilineTextAlignment(.trailing)
+            VStack {
+                Text(transaction.amount.formattedWithSeparator(2) + "$")
+                    .multilineTextAlignment(.trailing)
+                Text(getTransactionTime(date: transaction.time))
+                    .font(.caption2)
+                    .foregroundColor(.gray)
+            }
+            
         }
     }
     
@@ -37,6 +43,12 @@ struct TransactionItemView: View {
                         .resizable()
                         .frame(width: 20, height: 20)
         }
+    }
+    
+    private func getTransactionTime(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = Constants.DateFormat.transactionTime
+        return date.transform(with: formatter)
     }
     
 }
