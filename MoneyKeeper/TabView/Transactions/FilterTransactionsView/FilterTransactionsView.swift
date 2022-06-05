@@ -19,7 +19,7 @@ struct FilterTransactionsView: View {
             HStack {
                 Spacer()
                 VStack {
-                    Text("From:")
+                    Text(Constants.fromColon)
                     DatePicker(
                         "",
                         selection: $startDate,
@@ -30,7 +30,7 @@ struct FilterTransactionsView: View {
                 }
                 Spacer()
                 VStack {
-                    Text("To:")
+                    Text(Constants.toColon)
                     DatePicker(
                         "",
                         selection: $endDate,
