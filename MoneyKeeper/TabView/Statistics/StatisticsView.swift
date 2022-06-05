@@ -79,7 +79,7 @@ struct StatisticsView: View {
             return PieChartDataPoint(
                 value: category.amount,
                 colour: category.type.defaultColor,
-                label: .label(text: category.name + "\n" + category.amount.formattedWithSeparator(2) + " $", colour: .black, font: .title2, rFactor: 1.6)
+                label: .label(text: category.name + "\n" + category.amount.formattedWithSeparator(2) + " $", colour: Color.Chart.text, font: .title2, rFactor: 1.6)
             )
         }
         return PieChart(chartData:

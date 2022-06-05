@@ -28,7 +28,11 @@ struct AddMoneyView: View {
                 .foregroundColor(Color.TextField.foreground)
                 .accentColor(Color.TextField.accent)
                 .background(Color.TextField.background)
-                .cornerRadius(16)
+                .padding(4)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color.TextField.border, lineWidth: 1)
+                )
                 .introspectTextField { textField in
                     textField.becomeFirstResponder()
                     let string =  textField.text?.trimmingCharacters(in: CharacterSet(charactersIn: " "))

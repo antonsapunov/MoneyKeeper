@@ -6,21 +6,39 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 struct TransactionsView: View {
     
     @EnvironmentObject var viewModel: TransactionViewModel
-    
+    @State private var isSheetPresented = false
     var body: some View {
         NavigationView {
             List {
-                ForEach(Array(viewModel.transactionsByDate.keys.sorted(by: >)), id: \.self) { date in
+                ForEach(Array(viewModel.currentTransactionsByDate.keys.sorted(by: >)), id: \.self) { date in
                     getSection(for: date)
                 }
             }
             .listStyle(InsetGroupedListStyle())
             .padding(.top, 16)
             .navigationTitle(Constants.transactions)
+            
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    PSButton(
+                        isPresenting: $isSheetPresented,
+                        label: {
+                            Text(Constants.filter)
+                        }
+                    )
+                    .foregroundColor(Color.NavigationButton.foreground)
+                    .partialSheet(isPresented: $isSheetPresented) {
+                        FilterTransactionsView(isPresented: $isSheetPresented, startDate: viewModel.startDate, endDate: viewModel.endDate)
+                            .environmentObject(viewModel)
+                    }
+                }
+            }
+            .attachPartialSheetToRoot()
             .sheet(item: $viewModel.transactionForUdpate) { transaction in
                 UpdateTransactionView(transaction: transaction)
                     .environmentObject(UpdateTransactionViewModel())
@@ -30,7 +48,7 @@ struct TransactionsView: View {
     
     private func getSection(for date: String) -> some View {
         return Section(header: Text(date)) {
-            if let transactions = viewModel.transactionsByDate[date] {
+            if let transactions = viewModel.currentTransactionsByDate[date] {
                 ForEach(transactions) { transaction in
                     getSectionItem(for: transaction)
                 }

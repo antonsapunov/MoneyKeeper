@@ -11,15 +11,20 @@ extension Color {
 
     static let background = Color("background")
     
+    enum NavigationButton {
+        static let foreground = Color("naviagation_button_foreground")
+    }
+    
     enum Button {
         static let foreground = Color("button_foreground")
         static let background = Color("button_background")
     }
     
     enum TextField {
-        static let foreground = Color("textfield_foreground")
         static let accent = Color("textfield_accent")
+        static let foreground = Color("textfield_foreground")
         static let background = Color("textfield_background")
+        static let border = Color("textfield_border")
     }
     
     enum Icon {
@@ -27,6 +32,10 @@ extension Color {
     }
     
     enum Chart {
-        static let lines = Color("chart_lines")
+        static let text = Color("chart_text")
+    }
+    
+    enum CategoryType {
+        static let food = Color("category_type_food")
     }
 }

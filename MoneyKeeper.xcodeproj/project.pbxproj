@@ -37,6 +37,8 @@
 		61BF64F02619E2DF0000373D /* AddCategoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF64EF2619E2DF0000373D /* AddCategoryItemView.swift */; };
 		61BF64F62619ECA60000373D /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF64F52619ECA60000373D /* DashboardViewModel.swift */; };
 		61BF64FA2619F8570000373D /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF64F92619F8570000373D /* StatisticsViewModel.swift */; };
+		61C42F1F284CFB0D006C901B /* FilterTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C42F1E284CFB0D006C901B /* FilterTransactionsView.swift */; };
+		61C42F24284CFF49006C901B /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 61C42F23284CFF49006C901B /* PartialSheet */; };
 		61C865E1267F7139001889D0 /* +Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C865E0267F7139001889D0 /* +Formatter.swift */; };
 		61C865E4267F7217001889D0 /* +Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C865E3267F7217001889D0 /* +Color.swift */; };
 		61C865E7267F7507001889D0 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C865E6267F7507001889D0 /* Colors.xcassets */; };
@@ -83,6 +85,7 @@
 		61BF64EF2619E2DF0000373D /* AddCategoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryItemView.swift; sourceTree = "<group>"; };
 		61BF64F52619ECA60000373D /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 		61BF64F92619F8570000373D /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
+		61C42F1E284CFB0D006C901B /* FilterTransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTransactionsView.swift; sourceTree = "<group>"; };
 		61C865E0267F7139001889D0 /* +Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Formatter.swift"; sourceTree = "<group>"; };
 		61C865E3267F7217001889D0 /* +Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Color.swift"; sourceTree = "<group>"; };
 		61C865E6267F7507001889D0 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -100,6 +103,7 @@
 				6183F584284BFCF600E1F975 /* SwiftUICharts in Frameworks */,
 				612E88362618DDA200E51C94 /* Introspect in Frameworks */,
 				612E882C2618CF8600E51C94 /* RealmSwift in Frameworks */,
+				61C42F24284CFF49006C901B /* PartialSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +240,7 @@
 		61A65644266EC2C600CB328B /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
+				61C42F1D284CFAF6006C901B /* FilterTransactionsView */,
 				61AAA8AA26EE74650012D02B /* UpdateTransactionView */,
 				61A65645266EC2FF00CB328B /* TransactionsView.swift */,
 				61B919A1267162D70009F963 /* TransactionItemView.swift */,
@@ -251,6 +256,14 @@
 				61AAA8AD26EE74EC0012D02B /* UpdateTransactionViewModel.swift */,
 			);
 			path = UpdateTransactionView;
+			sourceTree = "<group>";
+		};
+		61C42F1D284CFAF6006C901B /* FilterTransactionsView */ = {
+			isa = PBXGroup;
+			children = (
+				61C42F1E284CFB0D006C901B /* FilterTransactionsView.swift */,
+			);
+			path = FilterTransactionsView;
 			sourceTree = "<group>";
 		};
 		61C865E2267F7162001889D0 /* Extensions */ = {
@@ -302,6 +315,7 @@
 				612E882D2618CF8600E51C94 /* Realm */,
 				612E88352618DDA200E51C94 /* Introspect */,
 				6183F583284BFCF600E1F975 /* SwiftUICharts */,
+				61C42F23284CFF49006C901B /* PartialSheet */,
 			);
 			productName = MoneyKeeper;
 			productReference = 617DCB672618652300CFD67C /* MoneyKeeper.app */;
@@ -356,6 +370,7 @@
 				612E882A2618CF8600E51C94 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				612E88342618DDA200E51C94 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				6183F582284BFCF500E1F975 /* XCRemoteSwiftPackageReference "SwiftUICharts" */,
+				61C42F22284CFF49006C901B /* XCRemoteSwiftPackageReference "PartialSheet" */,
 			);
 			productRefGroup = 617DCB682618652300CFD67C /* Products */;
 			projectDirPath = "";
@@ -417,6 +432,7 @@
 				619F9063261A3C360097C07E /* RealmCategory.swift in Sources */,
 				61D12F022687AF770003DE57 /* +Date.swift in Sources */,
 				612E88492618E52A00E51C94 /* CategoryType.swift in Sources */,
+				61C42F1F284CFB0D006C901B /* FilterTransactionsView.swift in Sources */,
 				61BF64F62619ECA60000373D /* DashboardViewModel.swift in Sources */,
 				61AAA8AE26EE74EC0012D02B /* UpdateTransactionViewModel.swift in Sources */,
 			);
@@ -688,6 +704,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		61C42F22284CFF49006C901B /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -710,6 +734,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6183F582284BFCF500E1F975 /* XCRemoteSwiftPackageReference "SwiftUICharts" */;
 			productName = SwiftUICharts;
+		};
+		61C42F23284CFF49006C901B /* PartialSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 61C42F22284CFF49006C901B /* XCRemoteSwiftPackageReference "PartialSheet" */;
+			productName = PartialSheet;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
