@@ -49,12 +49,3 @@ jobs:
       with:
         name: TestLogs
         path: DerivedData/Logs/Test
-  
-  delete_artifact:
-    name: Delete Artifact
-    runs-on: macOS-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: joutvhu/delete-artifact@v1
-        with:
-          name: Products
