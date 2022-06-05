@@ -63,7 +63,7 @@ enum CategoryType: String {
     var defaultColor: Color {
         switch self {
         case .food:
-            return .black
+            return Color.CategoryType.food
         case .transport:
             return .blue
         case .shopping:

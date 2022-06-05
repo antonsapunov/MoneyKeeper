@@ -21,6 +21,9 @@ struct Constants {
     static let add = "ADD"
     static let update = "Update"
     static let delete = "Delete"
+    static let filter = "Filter"
+    static let fromColon = "From:"
+    static let toColon = "To:"
     
     static let lines = "Lines"
     static let graph = "Graph"
