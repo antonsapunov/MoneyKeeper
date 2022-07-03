@@ -22,7 +22,6 @@ struct TransactionsView: View {
             .listStyle(InsetGroupedListStyle())
             .padding(.top, 16)
             .navigationTitle(Constants.transactions)
-            
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     PSButton(
@@ -67,7 +66,7 @@ struct TransactionsView: View {
             Button {
                 viewModel.getTransaction(by: transaction.id)
             } label: {
-                Label("Update", systemImage: "pencil")
+                Label(Constants.update, systemImage: "pencil")
             }
         }
     }

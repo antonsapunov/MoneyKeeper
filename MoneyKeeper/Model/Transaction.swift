@@ -14,7 +14,7 @@ struct Transaction: Identifiable {
     let comment: String
     let amount: Double
     let currency: String
-    let time: Date
+    let date: Date
     
     init(categoryType: CategoryType) {
         id = ""
@@ -23,17 +23,33 @@ struct Transaction: Identifiable {
         comment = ""
         amount = 0
         currency = "USD"
-        time = Date()
+        date = Date()
     }
     
-    init(id: String, categoryType: CategoryType, direction: TransactionDirection, comment: String, amount: Double, currency: String, time: Date) {
+    init(id: String, categoryType: CategoryType, direction: TransactionDirection, comment: String, amount: Double, currency: String, date: Date) {
         self.id = id
         self.categoryType = categoryType
         self.direction = direction
         self.comment = comment
         self.amount = amount
         self.currency = currency
-        self.time = time
+        self.date = date
+    }
+}
+
+extension Transaction {
+    init?(realmTransaction: RealmTransaction) {
+        guard let transactionCategoryType = CategoryType(rawValue: realmTransaction.categoryType),
+              let transactionDirection = TransactionDirection(rawValue: realmTransaction.direction) else {
+            return nil
+        }
+        id = realmTransaction.id
+        categoryType = transactionCategoryType
+        direction = transactionDirection
+        comment = realmTransaction.comment
+        amount = realmTransaction.amount
+        currency = realmTransaction.currency
+        date = realmTransaction.date
     }
 }
 

@@ -13,21 +13,19 @@ struct Category: Identifiable {
     let name: String
     let icon: Image
     let order: Int
-    var amount: Double
+    var transactions: [Transaction]
     
-    init(type: CategoryType, amount: Double = 0) {
+    init(type: CategoryType) {
         self.type = type
         self.name = type.defaultName
         self.icon = type.defaultImage
         self.order = type.defaultOrder
-        self.amount = amount
+        self.transactions = []
     }
     
-    init(type: CategoryType, order: Int, amount: Double = 0) {
-        self.type = type
-        self.name = type.defaultName
-        self.icon = type.defaultImage
-        self.order = order
-        self.amount = amount
+    func getCategoryAmount() -> Double {
+        return transactions.compactMap({ $0.amount }).reduce(0, +)
     }
+    
+    
 }

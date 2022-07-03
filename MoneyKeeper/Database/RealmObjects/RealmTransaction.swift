@@ -23,3 +23,25 @@ class RealmTransaction: Object {
     }
     
 }
+
+extension RealmTransaction {
+    convenience init(transaction: Transaction) {
+        self.init()
+        categoryType = transaction.categoryType.rawValue
+        direction = transaction.direction.rawValue
+        comment = transaction.comment
+        amount = transaction.amount
+        currency = transaction.currency
+        date = transaction.date
+    }
+    
+    convenience init(categoryType: CategoryType, comment: String?, direction: TransactionDirection, amount: Double) {
+        self.init()
+        self.categoryType = categoryType.rawValue
+        self.direction = direction.rawValue
+        self.comment = comment ?? ""
+        self.amount = amount
+        currency = "$"
+        date = Date()
+    }
+}

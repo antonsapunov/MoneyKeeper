@@ -17,7 +17,7 @@ struct CategoryItemView: View {
                     .font(.caption)
                     .frame(width: 80)
                     .lineLimit(1)
-                Text(category.amount.formattedWithSeparator(2) + "$")
+                Text(category.getCategoryAmount().formattedWithSeparator(2) + "$")
                     .font(.caption)
                     .frame(width: 80)
                     .lineLimit(1)
@@ -51,6 +51,6 @@ struct CategoryItemView: View {
 
 struct CategoryItemView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryItemView(category: Category(type: .entertainment, order: 1))
+        CategoryItemView(category: Category(type: .entertainment))
     }
 }

@@ -70,7 +70,7 @@ class RealmStore {
         return Array(results ?? categoryResults)
             .compactMap {
                 guard let categoryType = CategoryType(rawValue: $0.type) else { return nil }
-            return Category(type: categoryType, amount: $0.amount)
+            return Category(type: categoryType)
         }
     }
     
@@ -85,7 +85,6 @@ class RealmStore {
                         category.type = categoryModel.type.rawValue
                         category.name = categoryModel.name
                         category.order = categoryModel.order
-                        category.amount = categoryModel.amount
                         categoriesToWrite.append(category)
                     }
                     try realm.write {
@@ -104,13 +103,7 @@ class RealmStore {
     func createTransaction(categoryType: CategoryType, comment: String? = nil, direction: TransactionDirection, amount: Double) {
         DispatchQueue.global(qos: .background).async {
             autoreleasepool {
-                let transaction = RealmTransaction()
-                transaction.categoryType = categoryType.rawValue
-                transaction.direction = direction.rawValue
-                transaction.comment = comment ?? ""
-                transaction.amount = amount
-                transaction.currency = "$"
-                transaction.date = Date()
+                let transaction = RealmTransaction(categoryType: categoryType, comment: comment, direction: direction, amount: amount)
                 do {
                     let realm = try Realm()
                     try realm.write {
@@ -128,18 +121,8 @@ class RealmStore {
             autoreleasepool {
                 do {
                     let realm = try Realm()
-                    guard let realmTransaction = realm.object(ofType: RealmTransaction.self, forPrimaryKey: transactionID),
-                          let categoryType = CategoryType(rawValue: realmTransaction.categoryType),
-                          let transactionDirection = TransactionDirection(rawValue: realmTransaction.direction) else { return }
-                    let transaction = Transaction(
-                        id: realmTransaction.id,
-                        categoryType: categoryType,
-                        direction: transactionDirection,
-                        comment: realmTransaction.comment,
-                        amount: realmTransaction.amount,
-                        currency: realmTransaction.currency,
-                        time: realmTransaction.date
-                    )
+                    guard let realmTransaction = realm.object(ofType: RealmTransaction.self, forPrimaryKey: transactionID) else { return }
+                    let transaction = Transaction(realmTransaction: realmTransaction)
                     comletionHandler(transaction)
                 } catch let error {
                     print(error)
@@ -184,22 +167,10 @@ class RealmStore {
         }
     }
     
-    private func getTransactionsByDate(_ transactions: Results<RealmTransaction>) -> [Transaction] {
+    private func sortedTransactionsByDate(_ transactions: Results<RealmTransaction>) -> [Transaction] {
         return transactions
             .sorted(by: { $0.date > $1.date })
-            .compactMap {
-                guard let categoryType = CategoryType(rawValue: $0.categoryType),
-                      let transactionDirection = TransactionDirection(rawValue: $0.direction) else { return nil }
-            return Transaction(
-                id: $0.id,
-                categoryType: categoryType,
-                direction: transactionDirection,
-                comment: $0.comment,
-                amount: $0.amount,
-                currency: $0.currency,
-                time: $0.date
-            )
-        }
+            .compactMap { Transaction(realmTransaction: $0) }
     }
     
     private func addTransactionObserver() {
@@ -225,17 +196,18 @@ class RealmStore {
             $0.categoryType
         }
         var categories = getActualCategories()
+        
         for key in transactionByCategory.keys {
             if let index = categories.firstIndex(where: { $0.type.rawValue == key }),
-               let amount = transactionByCategory[key]?.compactMap({ $0.amount }).reduce(0, +) {
-                categories[index].amount = amount
+               let transactionByCategory = transactionByCategory[key] {
+                categories[index].transactions = transactionByCategory.compactMap { Transaction(realmTransaction: $0) }
             }
         }
         updateUI(with: categories)
     }
     
     private func updateTransactions(with transactions: Results<RealmTransaction>) {
-        updateUI(with: getTransactionsByDate(transactions))
+        updateUI(with: sortedTransactionsByDate(transactions))
     }
     
     private func updateUI(with categories: [Category]) {

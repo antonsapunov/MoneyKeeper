@@ -43,6 +43,7 @@
 		61C865E4267F7217001889D0 /* +Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C865E3267F7217001889D0 /* +Color.swift */; };
 		61C865E7267F7507001889D0 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61C865E6267F7507001889D0 /* Colors.xcassets */; };
 		61D12F022687AF770003DE57 /* +Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D12F012687AF770003DE57 /* +Date.swift */; };
+		61DAC8F22872138C0024647F /* TransactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DAC8F12872138C0024647F /* TransactionRepository.swift */; };
 		61DFF24D284B8D2400C852F6 /* MoneyKeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DFF24C284B8D2400C852F6 /* MoneyKeeperTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,7 @@
 		61C865E3267F7217001889D0 /* +Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Color.swift"; sourceTree = "<group>"; };
 		61C865E6267F7507001889D0 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		61D12F012687AF770003DE57 /* +Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+Date.swift"; sourceTree = "<group>"; };
+		61DAC8F12872138C0024647F /* TransactionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRepository.swift; sourceTree = "<group>"; };
 		61DFF24A284B8D2400C852F6 /* MoneyKeeperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoneyKeeperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		61DFF24C284B8D2400C852F6 /* MoneyKeeperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyKeeperTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -219,6 +221,7 @@
 				61C865E2267F7162001889D0 /* Extensions */,
 				612E883C2618DFEA00E51C94 /* Database */,
 				61799A0F26186A8F0068B705 /* Model */,
+				61DAC8F0287213730024647F /* Repository */,
 				61799A6E2618C0460068B705 /* TabView */,
 				617DCB6A2618652300CFD67C /* MoneyKeeperApp.swift */,
 				617DCB6E2618652400CFD67C /* Assets.xcassets */,
@@ -284,6 +287,14 @@
 				61C865E3267F7217001889D0 /* +Color.swift */,
 			);
 			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		61DAC8F0287213730024647F /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				61DAC8F12872138C0024647F /* TransactionRepository.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 		61DFF24B284B8D2400C852F6 /* MoneyKeeperTests */ = {
@@ -424,6 +435,7 @@
 				61B919A626716B730009F963 /* Constants.swift in Sources */,
 				61B919A0267160110009F963 /* TransactionViewModel.swift in Sources */,
 				61799A1A261874F60068B705 /* VerticalLabelStyle.swift in Sources */,
+				61DAC8F22872138C0024647F /* TransactionRepository.swift in Sources */,
 				61799A702618C0540068B705 /* TabViewScreen.swift in Sources */,
 				61B919A4267163600009F963 /* Transaction.swift in Sources */,
 				61B919A826716DA90009F963 /* +Double.swift in Sources */,

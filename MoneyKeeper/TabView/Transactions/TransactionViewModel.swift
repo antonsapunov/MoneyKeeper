@@ -5,6 +5,7 @@
 //  Created by Anton Sapunov on 6/9/21.
 //
 
+import Combine
 import Foundation
 
 class TransactionViewModel: ObservableObject {
@@ -13,72 +14,48 @@ class TransactionViewModel: ObservableObject {
     @Published var totalSpendings: Double = 0
     @Published var transactionForUdpate: Transaction?
     
-    private var allTransactionsByDate: [String: [Transaction]] = [:] {
-        didSet {
-            filterTransactionsByDate(startDate: startDate, endDate: endDate)
-        }
-    }
+    private let transactionRepository: TransactionRepositoryProtocol = TransactionRepository()
+    private var cancellables = Set<AnyCancellable>()
     
     var startDate = Date()
     var endDate = Date()
-    
-    private let realmStore = RealmStore.shared
+
     private var filterState: FilterState = .initial
     
     init() {
-        realmStore.addTransactionDelegate(delegate: self)
+        transactionRepository.transactionsSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] transactions in
+                self?.updateTransactions(transactions)
+            }
+            .store(in: &cancellables)
     }
     
     func getTransaction(by transactionID: String) {
-        realmStore.getTransaction(transactionID: transactionID) { [weak self] transaction in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.transactionForUdpate = transaction
+        transactionRepository.getTransaction(by: transactionID)
+        transactionRepository.getTransactionSubject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] transaction in
+                self?.transactionForUdpate = transaction
             }
-        }
+            .store(in: &cancellables)
     }
     
     func deleteTransaction(by transactionID: String) {
-        realmStore.deleteTransaction(transactionID: transactionID)
-    }
-    
-    private func getTransactionsByDate(_ transactions: [Transaction]) -> [String: [Transaction]] {
-        let formatter = DateFormatter()
-        formatter.dateFormat = Constants.DateFormat.transactionDate
-        if filterState == .initial {
-            startDate = transactions.last?.time.removeTimeStamp() ?? Date()
-        }
-        return Dictionary(
-            grouping: transactions,
-            by: { $0.time.transform(with: formatter) }
-        )
+        transactionRepository.deleteTransaction(by: transactionID)
     }
     
     func filterTransactionsByDate(startDate: Date, endDate: Date) {
         self.startDate = startDate
         self.endDate = endDate
         filterState = .set
-        let formatter = DateFormatter()
-        formatter.dateFormat = Constants.DateFormat.transactionDate
-        currentTransactionsByDate = allTransactionsByDate.filter { element in
-            guard let transactionDate = formatter.date(from: element.key) else {
-                return false
-            }
-            return transactionDate >= startDate && transactionDate <= endDate
-        }
+        currentTransactionsByDate = transactionRepository.getTransactionsFilteredByDate(startDate: startDate, endDate: endDate)
     }
     
-    deinit {
-        realmStore.removeDelegate(delegate: self)
-    }
-
-}
-
-extension TransactionViewModel: TransactionDelegate {
-    func update(transactions: [Transaction]) {
-        let transactionsByDate = getTransactionsByDate(transactions)
-        DispatchQueue.main.async {
-            self.allTransactionsByDate = transactionsByDate
+    private func updateTransactions(_ transactions: [Transaction]) {
+        if filterState == .initial {
+            startDate = transactions.last?.date.removeTimeStamp() ?? Date()
         }
+        currentTransactionsByDate = transactionRepository.getTransactionsFilteredByDate(startDate: startDate, endDate: endDate)
     }
 }

@@ -59,11 +59,12 @@ struct StatisticsView: View {
     
     private func getBarChart(categories: [Category]) -> some View {
         let points: [BarChartDataPoint] = categories.compactMap { category in
-            guard category.amount != 0 else { return nil }
+            let amount = category.getCategoryAmount()
+            guard amount != 0 else { return nil }
             return BarChartDataPoint(
-                value: category.amount,
-                xAxisLabel: category.name + " " + category.amount.formattedWithSeparator(2) + " $",
-                description: category.amount.formattedWithSeparator(2) + " $",
+                value: amount,
+                xAxisLabel: category.name + " " + amount.formattedWithSeparator(2) + " $",
+                description: amount.formattedWithSeparator(2) + " $",
                 colour: ColourStyle(colour: category.type.defaultColor)
             )
         }
@@ -75,18 +76,19 @@ struct StatisticsView: View {
     
     private func getPieChart(categories: [Category]) -> some View {
         let points: [PieChartDataPoint] = categories.compactMap { category in
-            guard category.amount != 0 else { return nil }
+            let amount = category.getCategoryAmount()
+            guard amount != 0 else { return nil }
             return PieChartDataPoint(
-                value: category.amount,
+                value: amount,
                 colour: category.type.defaultColor,
-                label: .label(text: category.name + "\n" + category.amount.formattedWithSeparator(2) + " $", colour: Color.Chart.text, font: .title2, rFactor: 1.6)
+                label: .label(text: category.name + "\n" + amount.formattedWithSeparator(2) + " $", colour: Color.Chart.text, font: .title2, rFactor: 1.6)
             )
         }
         return PieChart(chartData:
             PieChartData(
                 dataSets: PieDataSet(
                     dataPoints: points,
-                    legendTitle: "Pie"
+                    legendTitle: ""
                 ),
                 metadata: ChartMetadata()
             )

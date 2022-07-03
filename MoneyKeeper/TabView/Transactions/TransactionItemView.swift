@@ -24,7 +24,7 @@ struct TransactionItemView: View {
             VStack {
                 Text(transaction.amount.formattedWithSeparator(2) + "$")
                     .multilineTextAlignment(.trailing)
-                Text(getTransactionTime(date: transaction.time))
+                Text(getTransactionTime(date: transaction.date))
                     .font(.caption2)
                     .foregroundColor(.gray)
             }
@@ -63,7 +63,7 @@ struct TransactionItemView_Previews: PreviewProvider {
                 comment: "Test transaction",
                 amount: 10,
                 currency: "$",
-                time: Date()
+                date: Date()
             )
         )
     }
