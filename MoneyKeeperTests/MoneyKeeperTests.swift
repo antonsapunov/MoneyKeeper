@@ -12,13 +12,10 @@ import RealmSwift
 class MoneyKeeperTests: XCTestCase {
     
     var realm: Realm!
-    
-    private let realmStore = RealmStore.shared
 
     override func setUpWithError() throws {
         let realm = try! Realm()
         self.realm = realm
-        realmStore.createInitialCategories()
     }
 
     override func tearDownWithError() throws {
@@ -26,7 +23,7 @@ class MoneyKeeperTests: XCTestCase {
     }
     
     func test_CategoryCount_Initially_ShouldBeZero() {
-        XCTAssertEqual(realm.objects(RealmCategory.self).count, 5, "should be 5 (Initial categories count)")
+        XCTAssertEqual(realm.objects(RealmCategory.self).count, 0, "should be 0")
     }
     
     func test_TransactionsCount_Initially_ShouldBeZero() {
