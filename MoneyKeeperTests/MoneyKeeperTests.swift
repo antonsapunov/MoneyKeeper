@@ -12,10 +12,13 @@ import RealmSwift
 class MoneyKeeperTests: XCTestCase {
     
     var realm: Realm!
+    
+    private let realmStore = RealmStore.shared
 
     override func setUpWithError() throws {
         let realm = try! Realm()
         self.realm = realm
+        realmStore.createInitialCategories()
     }
 
     override func tearDownWithError() throws {
