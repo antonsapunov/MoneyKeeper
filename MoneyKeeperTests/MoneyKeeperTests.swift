@@ -22,10 +22,6 @@ class MoneyKeeperTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
-    func test_CategoryCount_Initially_ShouldBeZero() {
-        XCTAssertEqual(realm.objects(RealmCategory.self).count, 0, "should be 0")
-    }
-    
     func test_TransactionsCount_Initially_ShouldBeZero() {
         XCTAssertEqual(realm.objects(RealmTransaction.self).count, 0, "should be 0")
     }
